@@ -1,0 +1,50 @@
+<section class="section-padding gradient-section">
+  <div class="container-narrow">
+    <div class="max-w-xl mx-auto text-center">
+      <h2 class="text-2xl sm:text-3xl font-bold text-navy mb-4 fade-in">
+        Stay in the Loop
+      </h2>
+      <p class="text-navy-700 mb-8 fade-in">
+        Get monthly updates on community events, founder stories, and opportunities in Latino health tech.
+      </p>
+
+      <form
+        id="newsletter-form"
+        class="flex flex-col sm:flex-row gap-3 fade-in"
+        action="#"
+        method="POST"
+      >
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="your@email.com"
+          class="flex-1 px-5 py-3.5 rounded-lg border border-gray-200 bg-white text-navy placeholder:text-gray-400
+                 focus:outline-none focus:ring-2 focus:ring-purple/50 focus:border-purple transition-all"
+        />
+        <button type="submit" class="btn-primary whitespace-nowrap">
+          Subscribe
+        </button>
+      </form>
+
+      <p class="text-gray-400 text-xs mt-4 fade-in">
+        No spam. Unsubscribe anytime.
+      </p>
+
+      <!-- Success message (hidden by default) -->
+      <div id="newsletter-success" class="hidden mt-4 p-4 bg-green-50 text-green-700 rounded-lg text-sm font-medium">
+        Thanks for subscribing! Check your inbox for a confirmation.
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    document.getElementById('newsletter-form')?.addEventListener('submit', function (e) {
+      e.preventDefault();
+      // TODO: Connect to email service (Buttondown, ConvertKit, or Cloudflare Pages Function)
+      const form = e.target;
+      form.classList.add('hidden');
+      document.getElementById('newsletter-success')?.classList.remove('hidden');
+    });
+  </script>
+</section>

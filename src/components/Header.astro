@@ -1,0 +1,113 @@
+---
+const navLinks = [
+  { label: 'About', href: '/about' },
+  { label: 'Community', href: '/community' },
+  { label: 'Volunteer', href: '/volunteer' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-8 h-8 bg-purple rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-sm">S</span>
+        </div>
+        <span class="font-bold text-lg text-navy group-hover:text-purple transition-colors">
+          SaludConTech
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'text-sm font-medium transition-colors hover:text-purple',
+              currentPath === link.href ? 'text-purple' : 'text-navy-700',
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a href="/community" class="btn-primary text-sm !px-6 !py-2.5">
+          Join Us
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+        aria-label="Open menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-50 md:hidden">
+    <div class="p-6">
+      <div class="flex justify-end mb-8">
+        <button id="mobile-menu-close" class="p-2 rounded-lg hover:bg-gray-100" aria-label="Close menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-4">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'text-lg font-medium py-2 border-b border-gray-100 transition-colors hover:text-purple',
+              currentPath === link.href ? 'text-purple' : 'text-navy',
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a href="/community" class="btn-primary text-center mt-4">
+          Join Us
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-overlay" class="fixed inset-0 bg-black/30 z-40 hidden md:hidden"></div>
+</header>
+
+<!-- Spacer for fixed header -->
+<div class="h-16 sm:h-20"></div>
+
+<script is:inline>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const closeBtn = document.getElementById('mobile-menu-close');
+  const menu = document.getElementById('mobile-menu');
+  const overlay = document.getElementById('mobile-overlay');
+
+  function openMenu() {
+    menu.classList.add('open');
+    overlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    menu.classList.remove('open');
+    overlay.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  menuBtn.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+</script>

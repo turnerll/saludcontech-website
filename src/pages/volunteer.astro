@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import VolunteerRoles from '../components/VolunteerRoles.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Volunteer — SaludConTech" description="Join the SaludConTech founding team as a volunteer. 90-day sprint commitment, founding recognition, mentorship, and network access.">
+  <Header />
+  <main>
+    <!-- Page Header -->
+    <section class="section-padding bg-gradient-to-b from-purple-50/80 to-white">
+      <div class="container-narrow">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-purple/10 rounded-full mb-6 fade-in">
+            <span class="text-purple text-sm font-medium">Founding Team</span>
+          </div>
+          <h1 class="text-4xl sm:text-5xl font-extrabold text-navy mb-6 fade-in">
+            Help Build Something That
+            <span class="gradient-text"> Actually Matters.</span>
+          </h1>
+          <p class="text-lg text-navy-700 leading-relaxed fade-in">
+            We are building the founding team for the most important community in Latino health tech. Every role comes with a 90-day sprint commitment — enough time to make a real impact.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What You Get -->
+    <section class="section-padding gradient-section">
+      <div class="container-narrow">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl sm:text-4xl font-bold text-navy mb-4 fade-in">What You Get</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="glass-card text-center fade-in">
+            <div class="w-12 h-12 bg-purple/10 rounded-xl mx-auto mb-4 flex items-center justify-center">
+              <svg class="w-6 h-6 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-navy mb-2">Founding Recognition</h3>
+            <p class="text-navy-700 text-sm">Your name in all materials as a founding team member.</p>
+          </div>
+
+          <div class="glass-card text-center fade-in">
+            <div class="w-12 h-12 bg-purple/10 rounded-xl mx-auto mb-4 flex items-center justify-center">
+              <svg class="w-6 h-6 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-navy mb-2">Direct Mentorship</h3>
+            <p class="text-navy-700 text-sm">From a physician-entrepreneur with 15 years of community health experience.</p>
+          </div>
+
+          <div class="glass-card text-center fade-in">
+            <div class="w-12 h-12 bg-purple/10 rounded-xl mx-auto mb-4 flex items-center justify-center">
+              <svg class="w-6 h-6 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-navy mb-2">Network Access</h3>
+            <p class="text-navy-700 text-sm">HLTH Foundation, ViVE, UCLA, USC Keck healthcare ecosystem.</p>
+          </div>
+
+          <div class="glass-card text-center fade-in">
+            <div class="w-12 h-12 bg-purple/10 rounded-xl mx-auto mb-4 flex items-center justify-center">
+              <svg class="w-6 h-6 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-navy mb-2">Portfolio Piece</h3>
+            <p class="text-navy-700 text-sm">Building a community from scratch that serves 68 million Americans.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roles -->
+    <VolunteerRoles />
+
+    <!-- 90-Day Sprint -->
+    <section class="section-padding gradient-section">
+      <div class="container-narrow">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-3xl sm:text-4xl font-bold text-navy mb-6 fade-in">The 90-Day Sprint</h2>
+          <p class="text-navy-700 text-lg leading-relaxed mb-8 fade-in">
+            March through June 2026. Three phases. Specific deliverables. No ambiguity. This is not an indefinite volunteer gig — it is a focused sprint to build something that matters.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div class="p-6 bg-white rounded-xl border border-gray-200 fade-in">
+              <div class="text-purple font-bold text-sm mb-2">Days 1-30</div>
+              <h3 class="font-bold text-navy mb-1">Foundation</h3>
+              <p class="text-navy-700 text-sm">Website live, first volunteers, advisory board invitations sent</p>
+            </div>
+            <div class="p-6 bg-white rounded-xl border border-gray-200 fade-in">
+              <div class="text-purple font-bold text-sm mb-2">Days 31-60</div>
+              <h3 class="font-bold text-navy mb-1">Activation</h3>
+              <p class="text-navy-700 text-sm">First events, content calendar, grant applications submitted</p>
+            </div>
+            <div class="p-6 bg-white rounded-xl border border-gray-200 fade-in">
+              <div class="text-purple font-bold text-sm mb-2">Days 61-90</div>
+              <h3 class="font-bold text-navy mb-1">Scale</h3>
+              <p class="text-navy-700 text-sm">Corporate sponsor outreach, accelerator planning, full community ops</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <CTA />
+  </main>
+  <Footer />
+</Layout>
