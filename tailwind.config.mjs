@@ -25,9 +25,17 @@ export default {
           800: "#222238",
           900: "#1A1A2E",
         },
+        dark: {
+          DEFAULT: "#0A0A1A",
+          50: "#16162E",
+          100: "#111128",
+          200: "#1A1A3E",
+          300: "#222250",
+        },
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+        display: ["Space Grotesk", "Inter", "system-ui", "sans-serif"],
       },
     },
   },

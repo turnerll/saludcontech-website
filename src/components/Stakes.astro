@@ -1,41 +1,44 @@
-<section id="mission" class="section-padding bg-navy text-white">
-  <div class="container-narrow">
+<section id="mission" class="section-padding bg-dark-100 relative overflow-hidden">
+  <!-- Ambient glow -->
+  <div class="absolute top-0 left-1/3 w-[600px] h-[400px] bg-purple/5 rounded-full blur-[120px]"></div>
+
+  <div class="container-narrow relative">
     <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-6 fade-in">
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 fade-in tracking-tight">
         The System Was Not Built For Us
       </h2>
-      <p class="text-gray-300 text-lg leading-relaxed fade-in">
+      <p class="text-gray-400 text-lg leading-relaxed fade-in">
         The people building health technology do not understand the communities that need it most. That ends here.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-children">
       <!-- Stat 1 -->
-      <div class="text-center p-8 rounded-2xl bg-white/5 border border-white/10 fade-in">
-        <div class="text-5xl sm:text-6xl font-extrabold text-purple-300 mb-3">
+      <div class="text-center p-8 rounded-2xl bg-white/5 border border-white/10 fade-in ambient-glow">
+        <div class="text-5xl sm:text-6xl lg:text-7xl font-display font-bold text-purple-300 mb-3 glow-purple">
           <span class="counter" data-target="99.1">0</span>%
         </div>
-        <p class="text-gray-300 leading-relaxed">
+        <p class="text-gray-400 leading-relaxed">
           of FDA-cleared AI devices report <strong class="text-white">zero socioeconomic data</strong>
         </p>
       </div>
 
       <!-- Stat 2 -->
-      <div class="text-center p-8 rounded-2xl bg-white/5 border border-white/10 fade-in">
-        <div class="text-5xl sm:text-6xl font-extrabold text-purple-300 mb-3">
+      <div class="text-center p-8 rounded-2xl bg-white/5 border border-white/10 fade-in ambient-glow">
+        <div class="text-5xl sm:text-6xl lg:text-7xl font-display font-bold text-purple-300 mb-3 glow-purple">
           <span class="counter" data-target="6">0</span>%
         </div>
-        <p class="text-gray-300 leading-relaxed">
+        <p class="text-gray-400 leading-relaxed">
           of physicians are Latino despite being <strong class="text-white">20% of the population</strong>
         </p>
       </div>
 
       <!-- Stat 3 -->
-      <div class="text-center p-8 rounded-2xl bg-white/5 border border-white/10 fade-in">
-        <div class="text-5xl sm:text-6xl font-extrabold text-purple-300 mb-3">
+      <div class="text-center p-8 rounded-2xl bg-white/5 border border-white/10 fade-in ambient-glow">
+        <div class="text-5xl sm:text-6xl lg:text-7xl font-display font-bold text-purple-300 mb-3 glow-purple">
           $<span class="counter" data-target="4.6">0</span>B
         </div>
-        <p class="text-gray-300 leading-relaxed">
+        <p class="text-gray-400 leading-relaxed">
           lost annually to <strong class="text-white">language barriers</strong> in healthcare
         </p>
       </div>
@@ -49,34 +52,37 @@
       counters.forEach((counter) => {
         const target = parseFloat(counter.getAttribute('data-target'));
         const isDecimal = target % 1 !== 0;
-        const duration = 2000;
-        const startTime = performance.now();
-
-        function update(currentTime) {
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const current = target * eased;
-
-          counter.textContent = isDecimal ? current.toFixed(1) : Math.floor(current).toString();
-
-          if (progress < 1) {
-            requestAnimationFrame(update);
-          } else {
-            counter.textContent = isDecimal ? target.toFixed(1) : target.toString();
-          }
-        }
+        const duration = 2500;
+        let started = false;
 
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
-              if (entry.isIntersecting) {
+              if (entry.isIntersecting && !started) {
+                started = true;
+                const startTime = performance.now();
+
+                function update(currentTime) {
+                  const elapsed = currentTime - startTime;
+                  const progress = Math.min(elapsed / duration, 1);
+                  const eased = 1 - Math.pow(1 - progress, 4);
+                  const current = target * eased;
+
+                  counter.textContent = isDecimal ? current.toFixed(1) : Math.floor(current).toString();
+
+                  if (progress < 1) {
+                    requestAnimationFrame(update);
+                  } else {
+                    counter.textContent = isDecimal ? target.toFixed(1) : target.toString();
+                  }
+                }
+
                 requestAnimationFrame(update);
                 observer.unobserve(entry.target);
               }
             });
           },
-          { threshold: 0.5 }
+          { threshold: 0.3 }
         );
 
         observer.observe(counter);

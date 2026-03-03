@@ -1,41 +1,46 @@
 <section class="relative overflow-hidden">
-  <!-- Subtle gradient background -->
-  <div class="absolute inset-0 bg-gradient-to-br from-purple-50/80 via-white to-white"></div>
-  <div class="absolute top-20 right-0 w-96 h-96 bg-purple/5 rounded-full blur-3xl"></div>
-  <div class="absolute bottom-0 left-0 w-72 h-72 bg-purple/5 rounded-full blur-3xl"></div>
+  <!-- Dark gradient background with purple glow -->
+  <div class="absolute inset-0 bg-dark"></div>
+  <div class="absolute top-20 right-0 w-[500px] h-[500px] bg-purple/8 rounded-full blur-[120px]"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple/5 rounded-full blur-[100px]"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-purple/3 rounded-full blur-[150px]"></div>
 
-  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36">
-    <div class="max-w-3xl">
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-40">
+    <div class="max-w-4xl">
       <!-- Eyebrow -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-purple/10 rounded-full mb-6 fade-in">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-purple/10 border border-purple/20 rounded-full mb-8 fade-in">
         <div class="w-2 h-2 bg-purple rounded-full animate-pulse"></div>
-        <span class="text-purple text-sm font-medium">Latino Health Tech Community</span>
+        <span class="text-purple-300 text-sm font-medium">Latino Health Tech Community</span>
       </div>
 
-      <!-- Headline -->
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-navy leading-tight mb-6 fade-in">
-        Build the Health Tech Your Community
-        <span class="gradient-text"> Actually Needs.</span>
+      <!-- Headline — dramatic display font with text lift -->
+      <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[0.95] mb-8 tracking-tight">
+        <span class="block fade-in">Build the Health Tech</span>
+        <span class="block fade-in">Your Community</span>
+        <span class="block gradient-text fade-in">Actually Needs.</span>
       </h1>
 
       <!-- Subhead -->
-      <p class="text-lg sm:text-xl text-navy-700 leading-relaxed mb-10 max-w-2xl fade-in">
+      <p class="text-lg sm:text-xl text-gray-400 leading-relaxed mb-12 max-w-2xl fade-in">
         SaludConTech is where founders, clinicians, and builders from communities of color
         come together to create health technology that works for everyone.
       </p>
 
       <!-- CTAs -->
       <div class="flex flex-col sm:flex-row gap-4 fade-in">
-        <a href="/community" class="btn-primary text-center">
+        <a href="/community" class="btn-primary text-center text-lg">
           Join Our Community
           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
         </a>
-        <a href="#mission" class="btn-secondary text-center">
+        <a href="#mission" class="btn-secondary text-center text-lg">
           Learn More
         </a>
       </div>
     </div>
   </div>
+
+  <!-- Bottom gradient fade -->
+  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark to-transparent"></div>
 </section>

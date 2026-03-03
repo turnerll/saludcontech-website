@@ -45,31 +45,31 @@ const roles = [
 ];
 ---
 
-<section class="section-padding">
+<section class="section-padding bg-dark">
   <div class="container-narrow">
     <div class="text-center mb-16">
-      <h2 class="text-3xl sm:text-4xl font-bold text-navy mb-4 fade-in">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-4 fade-in tracking-tight">
         Open Roles
       </h2>
-      <p class="text-navy-700 text-lg max-w-2xl mx-auto fade-in">
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto fade-in">
         We're building the founding team. Every role is a 90-day sprint commitment.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
       {roles.map((role) => (
-        <div class="glass-card fade-in group hover:border-purple-300">
+        <div class="glass-card fade-in group hover:border-purple/30">
           <div class="text-3xl mb-4">{role.icon}</div>
-          <h3 class="font-bold text-navy text-lg mb-2 group-hover:text-purple transition-colors">
+          <h3 class="font-display font-bold text-white text-lg mb-2 group-hover:text-purple-300 transition-colors">
             {role.title}
           </h3>
-          <div class="inline-flex items-center gap-1 px-2 py-1 bg-purple/10 rounded text-xs font-medium text-purple mb-3">
+          <div class="inline-flex items-center gap-1 px-2 py-1 bg-purple/10 border border-purple/20 rounded text-xs font-medium text-purple-300 mb-3">
             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             {role.hours}
           </div>
-          <p class="text-navy-700 text-sm leading-relaxed">{role.skills}</p>
+          <p class="text-gray-400 text-sm leading-relaxed">{role.skills}</p>
         </div>
       ))}
     </div>
