@@ -1,5 +1,9 @@
 # SaludConTech Website — Handoff
 
+## READ THIS FIRST — 2026-08-11
+
+**Next session:** read `HANDOFF-2026-08-11.md` (full lossless state) and finish the plan. The one-line start is: *add the CNAME DNS record for `saludcontech.com` in the Cloudflare dashboard on the Mac Mini, verify the live domain serves the new build, test a signup + PostHog event, then capture the COMPA PostHog config and replicate it in the Ligazon/SCT project.*
+
 ## 2026-08-11 SESSION CONTINUITY — READ THIS FIRST
 
 - **Canonical local folder:** `/home/djtl/Projects/saludcontech-website` (this file).
