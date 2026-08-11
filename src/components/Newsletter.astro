@@ -41,10 +41,40 @@
   <script is:inline>
     document.getElementById('newsletter-form')?.addEventListener('submit', function (e) {
       e.preventDefault();
-      // TODO: Connect to email service (Buttondown, ConvertKit, or Cloudflare Pages Function)
       var form = e.target;
-      form.classList.add('hidden');
-      document.getElementById('newsletter-success')?.classList.remove('hidden');
+      var email = form.email.value.trim();
+      var payload = {
+        email: email,
+        source: 'saludcontech.com',
+        interest: 'newsletter',
+      };
+
+      // Supabase anon insert into public.signups (IP/UA captured by trigger)
+      fetch('https://jcxagmhvwakkxogfyrzv.supabase.co/rest/v1/signups', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjeGFnbWh2d2Fra3hvZ2Z5cnp2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMTQ5MTAsImV4cCI6MjA5NjY5MDkxMH0.G_iv7_Z5_TSHN7HeXsTuExRjs3edyCfPJwCc3xwc2rM',
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify(payload),
+      })
+        .then(function (res) {
+          if (res.ok) {
+            if (window.posthog) {
+              posthog.identify(email, { email: email, source: 'saludcontech.com' });
+              posthog.capture('relaunch_signup', { email: email, interest: 'newsletter' });
+            }
+            form.classList.add('hidden');
+            document.getElementById('newsletter-success')?.classList.remove('hidden');
+          } else {
+            throw new Error('Signup failed: ' + res.status);
+          }
+        })
+        .catch(function (err) {
+          console.error(err);
+          alert('Something went wrong. Please try again.');
+        });
     });
   </script>
 </section>

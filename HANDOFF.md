@@ -1,8 +1,23 @@
 # SaludConTech Website — Handoff
 
+## 2026-08-11 SESSION CONTINUITY — READ THIS FIRST
+
+- **Canonical local folder:** `/home/djtl/Projects/saludcontech-website` (this file).
+- **Canonical GitHub repo:** `turnerll/saludcontech-website` (public).
+- **Cloudflare Pages project:** `saludcontech-relaunch` (the existing project Daniel connected to the repo).
+- **Domain:** `saludcontech.com`.
+- **What just happened:** Daniel connected the Cloudflare Pages project to `turnerll/saludcontech-website`. The repo was merged with the older `saludcontech-site` work: PostHog `/ingest` proxy, Supabase `public.signups` signup wiring, Slack community digest, and SCT facts.
+- **Security cleanup needed:** the old Cloudflare Pages API token was exposed in this file. It has been redacted below and must be **rotated** before the next session.
+- **Next session priorities:**
+  1. Build (`npm run build`) and verify locally.
+  2. Configure Cloudflare Pages build settings: `npm run build` / `dist` and add custom domain `saludcontech.com`.
+  3. Deploy and verify live signup + PostHog event.
+  4. Capture COMPA PostHog config from Mac Mini browser (Daniel will log into COMPA account, then Ligazon/SCT account).
+  5. Replicate COMPA analytics setup in the Ligazon/SCT PostHog project (464719) with `site: saludcontech` filtering.
+
 ## Project Location
 
-`/home/djtl/ai-command-center/projects/djtl-personal/saludcontech-website/`
+`/home/djtl/Projects/saludcontech-website`
 
 ## What This Is
 
@@ -36,9 +51,10 @@ Complete Astro 5 static site for saludcontech.com, deployed to Cloudflare Pages 
 ## Deploy Command
 
 ```bash
-cd /home/djtl/ai-command-center/projects/djtl-personal/saludcontech-website
+cd /home/djtl/Projects/saludcontech-website
 npm run build
-CLOUDFLARE_API_TOKEN=jG7qD1gFFBnHZr9DaJ9VxooNax0VXYypmNLGzz0W npx wrangler pages deploy dist --project-name=saludcontech-website
+# Use a Cloudflare Pages API token stored in ~/pai/secrets/ (do NOT paste tokens into this file)
+CLOUDFLARE_API_TOKEN=<PAGES_TOKEN> npx wrangler pages deploy dist --project-name=saludcontech-relaunch
 ```
 
 ## Analytics
@@ -52,7 +68,7 @@ CLOUDFLARE_API_TOKEN=jG7qD1gFFBnHZr9DaJ9VxooNax0VXYypmNLGzz0W npx wrangler pages
 
 - Account: `28e227916c00920d80d094fec8c1017d`
 - Zone (saludcontech.com): `505ae6adf345831cb5d0a8959acc9869`
-- API Token (Pages): `jG7qD1gFFBnHZr9DaJ9VxooNax0VXYypmNLGzz0W`
+- API Token (Pages): `[REDACTED — rotate this token before next use]`
 
 ## What Worked
 
