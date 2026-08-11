@@ -14,23 +14,31 @@
 - Style: Clean, modern, professional, mobile-first
 - Animations: CSS + Intersection Observer (no heavy libraries)
 
-## Content Source
+## Content Sources
 
-All copy from: `SALUDCONTECH_COMPLETE_PLAYBOOK.docx.md` (repo root)
+- Primary website copy spec: `/home/djtl/cowork-archive/2026-07-16/outputs/local_6404d1a6-b0a0-413d-a5b2-8632813c6da5/SALUDCONTECH-COMEBACK-2026-07-16.md`
+- Strategy/research corpus: `docs/SCT-STRATEGY-CONTEXT.md`
+- Slack community voice: `docs/slack-community-digest.md`
+- Published numbers: `data/facts.json`
 
 ## Analytics
 
+- PostHog (first-party via `/ingest` proxy): project `464719`, key in `src/layouts/Layout.astro`
 - Umami (self-hosted): analytics.saludcontech.com
 - GA4: G-9KXZSTS8BL (existing, keep for Search Console)
 
-## Deploy
+## Deploy / Hosting
+
+- Hosting: Cloudflare Pages (cloud, not this machine or Claude).
+- Pages project name: `saludcontech-relaunch` (repo is `saludcontech-website`).
+- Build output: `dist/`
 
 ```bash
-npm run build   # Outputs to dist/
-npm run dev     # Local dev server
+source ~/.nvm/nvm.sh && nvm use 22 && npm run build   # Outputs to dist/
+npm run dev                                            # Local dev server
 ```
 
-Cloudflare Pages auto-deploys from GitHub on push.
+Cloudflare Pages auto-deploys from GitHub `main` on push.
 
 ## Pages
 

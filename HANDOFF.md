@@ -3,6 +3,7 @@
 ## READ THIS FIRST — 2026-08-11
 
 **The full lossless state is in `HANDOFF-2026-08-11.md`. Read that first.**
+**Strategy/research reference:** `docs/SCT-STRATEGY-CONTEXT.md`.
 
 **One-line next step:** add the Cloudflare DNS CNAME for `saludcontech.com` on the Mac Mini, verify the live domain serves the new build, test a signup + PostHog event, then capture the COMPA PostHog config from the Mac Mini browser and replicate it in the Ligazon/SCT PostHog project.
 
@@ -11,12 +12,13 @@
 - **Canonical folder:** `/home/djtl/Projects/saludcontech-website`
 - **Repo:** `https://github.com/turnerll/saludcontech-website` (public)
 - **Domain:** `saludcontech.com`
-- **Latest commit:** `443ea8c`
+- **Latest commit:** `7e9ecb6`
 - **Build:** `source ~/.nvm/nvm.sh && nvm use 22 && npm run build` → `dist/`
 - **Deployment live:** `https://0e836df8.saludcontech-relaunch.pages.dev/`
 - **DNS:** custom domain added but pending CNAME record. The old 2019 page still serves at `saludcontech.com`.
-- **PostHog client:** wired via `/ingest` proxy in `functions/ingest/[[path]].js`, key in `src/layouts/Layout.astro`.
+- **PostHog client:** wired via `/ingest` proxy in `functions/ingest/[[path]].js`, key in `src/layouts/Layout.astro`. Project `464719`.
 - **Supabase signup:** `src/components/Newsletter.astro` posts to `public.signups` in project `jcxagmhvwakkxogfyrzv`.
+- **Strategy doc:** `docs/SCT-STRATEGY-CONTEXT.md`
 
 ## Immediate next steps
 
