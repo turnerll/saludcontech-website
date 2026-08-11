@@ -12,7 +12,7 @@
 - **Canonical folder:** `/home/djtl/Projects/saludcontech-website`
 - **Repo:** `https://github.com/turnerll/saludcontech-website` (public)
 - **Domain:** `saludcontech.com`
-- **Latest commit:** `7e9ecb6`
+- **Latest commit:** `fefb470`
 - **Build:** `source ~/.nvm/nvm.sh && nvm use 22 && npm run build` → `dist/`
 - **Deployment live:** `https://0e836df8.saludcontech-relaunch.pages.dev/`
 - **DNS:** custom domain added but pending CNAME record. The old 2019 page still serves at `saludcontech.com`.
