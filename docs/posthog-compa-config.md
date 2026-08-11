@@ -58,7 +58,7 @@ Done via the PostHog API (personal key, `turnerlloveras@alumni.usc.edu` account)
   - Top referrers (30d) — id `10951981`
   - Device type breakdown (30d) — id `10951982`
 - **Weekly email subscription** of the dashboard to `turnerlloveras@alumni.usc.edu` (Mondays 09:00 PT), id `115807`.
-- **Alert**: NOT created. The alerts API rejected every condition schema variant (validation_error, "Unsupported alert config type"). To add manually in the UI: open the "Relaunch signups (daily)" insight → ⋯ menu → New alert → absolute value ≥ 1, daily, subscribe yourself.
+- **Alert**: "SaludConTech daily signups" (id `019ff311-71a8-0000-e127-cab257b85937`), daily, fires when signups ≥ 1, subscribed: turnerlloveras@alumni.usc.edu. (API note: alert creation requires `config: {"type": "TrendsAlertConfig", "series_index": 0}` — that missing field was the cause of the earlier "Unsupported alert config type" errors. Schema learned from COMPA's working "Daily Visitors Anomaly Alert".)
 
 ## End-to-end proof (2026-08-11)
 - Real-Chrome signup on https://saludcontech.com produced:
