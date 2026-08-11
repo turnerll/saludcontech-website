@@ -1,133 +1,36 @@
-# SaludConTech Website — Handoff
+# SaludConTech Website — Rolling Handoff
 
 ## READ THIS FIRST — 2026-08-11
 
-**Next session:** read `HANDOFF-2026-08-11.md` (full lossless state) and finish the plan. The one-line start is: *add the CNAME DNS record for `saludcontech.com` in the Cloudflare dashboard on the Mac Mini, verify the live domain serves the new build, test a signup + PostHog event, then capture the COMPA PostHog config and replicate it in the Ligazon/SCT project.*
+**The full lossless state is in `HANDOFF-2026-08-11.md`. Read that first.**
 
-## 2026-08-11 SESSION CONTINUITY — READ THIS FIRST
+**One-line next step:** add the Cloudflare DNS CNAME for `saludcontech.com` on the Mac Mini, verify the live domain serves the new build, test a signup + PostHog event, then capture the COMPA PostHog config from the Mac Mini browser and replicate it in the Ligazon/SCT PostHog project.
 
-- **Canonical local folder:** `/home/djtl/Projects/saludcontech-website` (this file).
-- **Canonical GitHub repo:** `turnerll/saludcontech-website` (public).
-- **Cloudflare Pages project:** `saludcontech-relaunch` (the existing project Daniel connected to the repo).
-- **Domain:** `saludcontech.com`.
-- **What just happened:** Daniel connected the Cloudflare Pages project to `turnerll/saludcontech-website`. The repo was merged with the older `saludcontech-site` work: PostHog `/ingest` proxy, Supabase `public.signups` signup wiring, Slack community digest, and SCT facts.
-- **Security cleanup needed:** the old Cloudflare Pages API token was exposed in this file. It has been redacted below and must be **rotated** before the next session.
-- **Next session priorities:**
-  1. Build (`npm run build`) and verify locally.
-  2. Configure Cloudflare Pages build settings: `npm run build` / `dist` and add custom domain `saludcontech.com`.
-  3. Deploy and verify live signup + PostHog event.
-  4. Capture COMPA PostHog config from Mac Mini browser (Daniel will log into COMPA account, then Ligazon/SCT account).
-  5. Replicate COMPA analytics setup in the Ligazon/SCT PostHog project (464719) with `site: saludcontech` filtering.
+## Current state (snapshot)
 
-## Project Location
+- **Canonical folder:** `/home/djtl/Projects/saludcontech-website`
+- **Repo:** `https://github.com/turnerll/saludcontech-website` (public)
+- **Domain:** `saludcontech.com`
+- **Latest commit:** `443ea8c`
+- **Build:** `source ~/.nvm/nvm.sh && nvm use 22 && npm run build` → `dist/`
+- **Deployment live:** `https://0e836df8.saludcontech-relaunch.pages.dev/`
+- **DNS:** custom domain added but pending CNAME record. The old 2019 page still serves at `saludcontech.com`.
+- **PostHog client:** wired via `/ingest` proxy in `functions/ingest/[[path]].js`, key in `src/layouts/Layout.astro`.
+- **Supabase signup:** `src/components/Newsletter.astro` posts to `public.signups` in project `jcxagmhvwakkxogfyrzv`.
 
-`/home/djtl/Projects/saludcontech-website`
+## Immediate next steps
 
-## What This Is
+1. Add CNAME `@` → `saludcontech-relaunch.pages.dev` (proxied) in Cloudflare DNS for `saludcontech.com` (Mac Mini).
+2. Verify `curl -I https://saludcontech.com/` returns the new build, not the old LiteSpeed page.
+3. Submit the newsletter form and confirm a row in `public.signups` + a PostHog `relaunch_signup` event.
+4. Capture COMPA PostHog settings from the Mac Mini browser into `docs/posthog-compa-config.md` + screenshots.
+5. Replicate the relevant settings in Ligazon/SCT PostHog project `464719`.
+6. Rotate the exposed Cloudflare API token (ID `35511cd6f8974a30ef14bc9196e5d023`) via Cloudflare dashboard.
 
-Complete Astro 5 static site for saludcontech.com, deployed to Cloudflare Pages with dark theme, dramatic animations, and self-hosted Umami analytics.
+## Rules
 
-## Current State (2026-03-03)
-
-- **Live at**: https://saludcontech.com (Cloudflare Pages)
-- **GitHub**: https://github.com/turnerll/saludcontech-website (branch: `main`)
-- **Latest commit**: `c16bc3b` — dark theme redesign
-- **Build**: `npm run build` outputs to `dist/`, `npm run dev` for local
-
-## Tech Stack
-
-- Astro 5 + Tailwind CSS v4 + TypeScript
-- Space Grotesk (display) + Inter (body) via Google Fonts
-- Dark theme: bg `#0A0A1A`, surface `#111128`, accent `#6B5CE7`
-- CSS animations + IntersectionObserver (no heavy JS libraries)
-- Cloudflare Pages hosting (free tier)
-
-## Pages
-
-| Page      | Path         | Key Features                                                  |
-| --------- | ------------ | ------------------------------------------------------------- |
-| Homepage  | `/`          | StoryBrand hero, animated counters, YouTube embed, newsletter |
-| About     | `/about`     | Mission, team, advisory board, ecosystem                      |
-| Community | `/community` | Inner rings model, how to join, events                        |
-| Volunteer | `/volunteer` | 7 open roles, 90-day sprint, perks                            |
-| Contact   | `/contact`   | Form → djtl@saludcontech.com via formsubmit.co                |
-
-## Deploy Command
-
-```bash
-cd /home/djtl/Projects/saludcontech-website
-npm run build
-# Use a Cloudflare Pages API token stored in ~/pai/secrets/ (do NOT paste tokens into this file)
-CLOUDFLARE_API_TOKEN=<PAGES_TOKEN> npx wrangler pages deploy dist --project-name=saludcontech-relaunch
-```
-
-## Analytics
-
-- **Umami**: Docker on AI Cortex port 3500, website ID `b97e6d2a-b31c-4ccb-bd6a-0f38e6afdc43`
-  - Dashboard: https://analytics.saludcontech.com (login: umami/umami — NEEDS PASSWORD CHANGE)
-  - Compose: `~/ai-command-center/services/umami/docker-compose.yml`
-- **GA4**: `G-9KXZSTS8BL` (existing, for Google Search Console)
-
-## Cloudflare IDs
-
-- Account: `28e227916c00920d80d094fec8c1017d`
-- Zone (saludcontech.com): `505ae6adf345831cb5d0a8959acc9869`
-- API Token (Pages): `[REDACTED — rotate this token before next use]`
-
-## What Worked
-
-- Full 5-page Astro site built and deployed
-- Dark theme redesign (19 files, Space Grotesk font, text-lift animations, counter glow effects)
-- Contact form via formsubmit.co (free, no backend needed)
-- Umami analytics container deployed and tunneled
-- GA4 tracking retained alongside Umami
-- All pushed to GitHub
-
-## What Failed
-
-- Umami admin password change (bash `!` interpolation — still default umami/umami)
-- No visual screenshot verification (Chrome extension not connected)
-
-## TODO (Next Session)
-
-1. **Visual QA** — open saludcontech.com in browser, screenshot desktop + mobile, check animations
-2. **Umami password** — change from default. Use the Umami UI (analytics.saludcontech.com → Profile → Change Password) or fix the curl command escaping
-3. **FormSubmit activation** — submit the contact form once, then check djtl@saludcontech.com for confirmation email and click the activation link
-4. **Cloudflare Pages auto-deploy** — connect GitHub repo in CF dashboard (Pages → saludcontech-website → Settings → Build & Deploy → Connect GitHub). Requires OAuth flow in browser
-5. **Update CLAUDE.md** — project CLAUDE.md still references white bg / light theme. Update colors to dark palette
-6. **OG image** — create a social sharing image (1200x630) for Open Graph meta tags
-7. **Lighthouse audit** — run Lighthouse, target >90 on performance, accessibility, SEO, best practices
-8. **Newsletter backend** — currently just UI. Options: Buttondown (free tier), ConvertKit, or n8n webhook
-9. **Content review** — Daniel should review all page copy for accuracy
-
-## File Structure
-
-```
-src/
-├── layouts/Layout.astro          # Base HTML, meta, analytics scripts
-├── components/
-│   ├── Header.astro              # Nav + mobile menu
-│   ├── Footer.astro              # Links + social
-│   ├── Hero.astro                # StoryBrand hero with text-lift
-│   ├── Stakes.astro              # "System Was Not Built For Us" + counters
-│   ├── ValueProp.astro           # Community/Mentorship/Opportunity cards
-│   ├── Guide.astro               # Daniel's bio
-│   ├── Stats.astro               # Impact counters (animated)
-│   ├── Video.astro               # YouTube embed
-│   ├── CTA.astro                 # "Ready to Build?" section
-│   ├── Newsletter.astro          # Email signup
-│   ├── InnerRings.astro          # Community tiers visual
-│   └── VolunteerRoles.astro      # Volunteer role cards
-├── pages/
-│   ├── index.astro               # Homepage
-│   ├── about.astro
-│   ├── community.astro
-│   ├── volunteer.astro
-│   └── contact.astro
-└── styles/global.css             # Dark theme, animations, utilities
-```
-
-## Content Source
-
-All website copy sourced from: `/home/djtl/ai-command-center/SALUDCONTECH_COMPLETE_PLAYBOOK.docx.md`
-
+- All SCT work stays in this folder. Do not write to `/home/djtl/Projects/ligazon` or `/home/djtl/Projects/saludcontech-site`.
+- Cloudflare Pages project name is `saludcontech-relaunch`, not `saludcontech-website`.
+- Start next session with fresh `opencode` (not `occ`) to load k3.
+- No real names in git.
+- See `CLAUDE.md` for permanent conventions and gotchas.
