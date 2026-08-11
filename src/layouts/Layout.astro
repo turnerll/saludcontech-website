@@ -110,6 +110,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         api_host: '/ingest',
         ui_host: 'https://us.posthog.com',
         session_recording: { enabled: true },
+        opt_out_capturing_by_default: true,
         respect_dnt: true,
         persistence: 'localStorage+cookie',
         loaded: function (posthog) {
@@ -147,6 +148,79 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right').forEach((el) => {
         observer.observe(el);
       });
+    </script>
+
+    <!-- Consent banner: CIPA-safe analytics + session replay opt-in -->
+    <div
+      id="consent-banner"
+      class="fixed bottom-0 left-0 right-0 z-50 bg-dark border-t border-white/10 shadow-[0_-4px_24px_rgba(0,0,0,0.4)]"
+      role="dialog"
+      aria-live="polite"
+      aria-label="Privacy consent"
+      hidden
+    >
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <p class="text-sm text-gray-300 leading-relaxed max-w-xl">
+            We use analytics and session replay to improve this site.
+          </p>
+          <div class="flex flex-wrap items-center gap-3">
+            <button id="consent-accept" type="button" class="btn-primary !px-5 !py-2 text-sm">Accept all</button>
+            <button id="consent-decline" type="button" class="btn-secondary !px-5 !py-2 text-sm">Decline all</button>
+            <button id="consent-dns" type="button" class="text-xs text-gray-500 hover:text-purple-300 underline underline-offset-2 bg-transparent border-0 p-0 cursor-pointer">
+              Do not sell or share my personal info
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script is:inline>
+      (function () {
+        var STORAGE_KEY = 'sct_consent';
+        var banner = document.getElementById('consent-banner');
+        var acceptBtn = document.getElementById('consent-accept');
+        var declineBtn = document.getElementById('consent-decline');
+        var dnsBtn = document.getElementById('consent-dns');
+
+        function setConsent(choice) {
+          try {
+            localStorage.setItem(STORAGE_KEY, choice);
+          } catch (e) {}
+          if (choice === 'accepted') {
+            if (window.posthog && posthog.opt_in_capturing) posthog.opt_in_capturing();
+          } else {
+            if (window.posthog && posthog.opt_out_capturing) posthog.opt_out_capturing();
+          }
+          if (banner) banner.hidden = true;
+        }
+
+        function applyStoredConsent() {
+          var choice = '';
+          try {
+            choice = localStorage.getItem(STORAGE_KEY) || '';
+          } catch (e) {}
+          if (choice === 'accepted') {
+            if (window.posthog && posthog.opt_in_capturing) posthog.opt_in_capturing();
+            if (banner) banner.hidden = true;
+          } else if (choice === 'declined') {
+            if (window.posthog && posthog.opt_out_capturing) posthog.opt_out_capturing();
+            if (banner) banner.hidden = true;
+          } else {
+            if (banner) banner.hidden = false;
+          }
+        }
+
+        if (acceptBtn) acceptBtn.addEventListener('click', function () { setConsent('accepted'); });
+        if (declineBtn) declineBtn.addEventListener('click', function () { setConsent('declined'); });
+        if (dnsBtn) dnsBtn.addEventListener('click', function () { setConsent('declined'); });
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', applyStoredConsent);
+        } else {
+          applyStoredConsent();
+        }
+      })();
     </script>
   </body>
 </html>
