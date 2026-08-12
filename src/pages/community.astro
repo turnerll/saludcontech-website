@@ -7,13 +7,13 @@ import LigazonCTA from '../components/LigazonCTA.astro';
 import LigazonFooter from '../components/LigazonFooter.astro';
 ---
 
-<Layout title="Community - SaludConTech" description="Join the SaludConTech community of Latino founders, clinicians, funders, and builders.">
+<Layout title="Community — SaludConTech" description="Join 659 Latino founders, clinicians, funders, and builders across 10 city chapters. Monthly calls, sobremesa dinners, and a vetted Slack workspace.">
   <LigazonHeader />
   <main>
     <PageHeader
       eyebrow="Join us"
       title="A community that gets it."
-      subtitle="SaludConTech is not a networking event. It is a gathering place where people can be their full selves, speak Spanglish, share frustrations about the system, and find collaborators who understand."
+      subtitle="Not a networking event. A gathering place where people can be their full selves, speak Spanglish, share frustrations about the system, and find collaborators who understand."
     />
 
     <section class="section-block">
@@ -101,7 +101,7 @@ import LigazonFooter from '../components/LigazonFooter.astro';
 <style>
   .principles-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
   }
 
@@ -127,7 +127,7 @@ import LigazonFooter from '../components/LigazonFooter.astro';
 
   .steps {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
     max-width: 900px;
     margin: 0 auto;
@@ -168,7 +168,7 @@ import LigazonFooter from '../components/LigazonFooter.astro';
 
   .events-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
     max-width: 900px;
     margin: 0 auto;

@@ -6,12 +6,12 @@ import LigazonCTA from '../components/LigazonCTA.astro';
 import LigazonFooter from '../components/LigazonFooter.astro';
 ---
 
-<Layout title="About - SaludConTech" description="SaludConTech is the cross-industry Latino entrepreneurship community. Founded in 2018 in Los Angeles.">
+<Layout title="About — SaludConTech" description="Founded in 2018. The cross-industry Latino entrepreneurship community where health is the common thread. 659 members. 10 city chapters.">
   <LigazonHeader />
   <main>
     <PageHeader
       eyebrow="Our story"
-      title="Those closest to the problems hold the keys to the solutions."
+      title="The people closest to the problems should own the solutions."
       subtitle="SaludConTech is where Latino founders, clinicians, funders, and operators build companies that serve the communities they come from."
     />
 
@@ -82,7 +82,7 @@ import LigazonFooter from '../components/LigazonFooter.astro';
 <style>
   .team-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px;
     margin-top: 48px;
   }

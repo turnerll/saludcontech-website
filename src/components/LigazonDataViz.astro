@@ -15,16 +15,16 @@ const bars = [
   <div class="container-narrow">
     <div class="section-head center">
       <span class="label">The numbers</span>
-      <h2 class="headline">The opportunity is measured in trillions. The gap is measured in single digits.</h2>
+      <h2 class="headline">Trillions in economic output. Single digits in ownership.</h2>
       <p class="lede">
-        Latino economic output is larger than the GDP of every country except the US and China. Yet ownership, capital, and leadership remain out of reach. These are the numbers that drive our work.
+        Latino economic output is larger than the GDP of every country except the US and China. Yet Latino founders receive about 2% of venture funding and hold about 2% of VC jobs. These are the numbers that drive our work.
       </p>
     </div>
 
     <div class="viz-grid">
       <div class="barchart">
         <h3>Latino share of capital and population</h3>
-        <p class="barchart-sub">Where we are going versus where capital still is.</p>
+        <p class="barchart-sub">Where demographics are headed versus where capital still sits.</p>
 
         <div class="bar-rows" id="sctBars">
           {bars.map((b) => (
@@ -260,7 +260,7 @@ const bars = [
 
   .stat-cards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 14px;
   }
 

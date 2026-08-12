@@ -7,13 +7,13 @@ import LigazonCTA from '../components/LigazonCTA.astro';
 import LigazonFooter from '../components/LigazonFooter.astro';
 ---
 
-<Layout title="Volunteer - SaludConTech" description="Join the SaludConTech founding team as a volunteer. 90-day sprint commitment, founding recognition, mentorship, and network access.">
+<Layout title="Volunteer — SaludConTech" description="Join the founding team. 90-day sprints, founding recognition, direct mentorship, and access to the HLTH and USC Keck networks.">
   <LigazonHeader />
   <main>
     <PageHeader
       eyebrow="Founding team"
       title="Help build something that actually matters."
-      subtitle="We are building the founding team for the most important community in Latino health entrepreneurship. Every role comes with a 90-day sprint commitment."
+      subtitle="We are assembling the founding team for the most important community in Latino health entrepreneurship. Every role is a 90-day sprint with clear deliverables."
     />
 
     <section class="section-block">
@@ -55,12 +55,12 @@ import LigazonFooter from '../components/LigazonFooter.astro';
           <div class="sprint-card">
             <span class="sprint-phase">Days 1-30</span>
             <h3>Foundation</h3>
-            <p>Website live, first volunteers, advisory board invitations sent.</p>
+            <p>Website live, first volunteers onboarded, advisory board invitations sent.</p>
           </div>
           <div class="sprint-card">
             <span class="sprint-phase">Days 31-60</span>
             <h3>Activation</h3>
-            <p>First events, content calendar, grant applications submitted.</p>
+            <p>First events, content calendar running, grant applications submitted.</p>
           </div>
           <div class="sprint-card">
             <span class="sprint-phase">Days 61-90</span>
@@ -80,7 +80,7 @@ import LigazonFooter from '../components/LigazonFooter.astro';
   .benefits-grid,
   .sprint-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 16px;
     margin-top: 48px;
   }
@@ -118,7 +118,7 @@ import LigazonFooter from '../components/LigazonFooter.astro';
   }
 
   .sprint-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     max-width: 900px;
     margin: 48px auto 0;
   }

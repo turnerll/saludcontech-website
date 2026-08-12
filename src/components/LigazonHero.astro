@@ -6,7 +6,7 @@ import SignupForm from './SignupForm.astro';
   <div class="container-narrow hero-inner">
     <p class="hero-inscription">
       The cross-industry Latino entrepreneurship community.
-      <span>Founders, funders, operators, builders. Health as the common thread.</span>
+      <span>Founders, funders, operators, builders. Health is the common thread.</span>
     </p>
 
     <span class="eyebrow-chip">
@@ -33,11 +33,11 @@ import SignupForm from './SignupForm.astro';
     </h1>
 
     <p class="hero-sub">
-      SaludConTech is where Latino entrepreneurs across industries find each other, share capital and customers, and build companies that serve the communities they come from.
+      SaludConTech is where Latino entrepreneurs across industries find their people, get in front of capital, and build in community.
     </p>
 
     <p class="lede">
-      We are 659 members strong, across 10 city chapters, with health as the thread that ties every industry together. If you are building something that matters, you belong here.
+      659 members. 10 city chapters. One Slack workspace where co-founders meet, warm intros happen, and real friendships start. If you are building something that matters, you belong here.
     </p>
 
     <SignupForm interest="homepage" buttonText="Join the community" />
@@ -46,13 +46,13 @@ import SignupForm from './SignupForm.astro';
       <a class="proj-card" href="/about">
         <div class="tag">Story</div>
         <h3>Who we are</h3>
-        <p>A national community founded in 2018 to close the gap between Latino talent and ownership in health and technology.</p>
+        <p>Founded in 2018 to close the gap between Latino talent and ownership in health and technology.</p>
         <span class="more">Read our story &rarr;</span>
       </a>
       <a class="proj-card" href="/community">
         <div class="tag">Connect</div>
         <h3>The membership</h3>
-        <p>City chapters, Slack, monthly calls, and founder dinners built for people who get it.</p>
+        <p>City chapters, Slack, monthly calls, and sobremesa dinners built for people who get it.</p>
         <span class="more">See how to join &rarr;</span>
       </a>
       <a class="proj-card" href="/volunteer">
@@ -179,7 +179,7 @@ import SignupForm from './SignupForm.astro';
 
   .hero-inscription {
     display: block;
-    font: 400 italic 0.98rem/1.5 var(--font-display);
+    font: 400 0.98rem/1.5 var(--font-display);
     color: var(--paper-200);
     max-width: 36em;
     margin: 0 0 22px;
@@ -192,7 +192,6 @@ import SignupForm from './SignupForm.astro';
     display: block;
     margin-top: 6px;
     font: 500 0.7rem/1 var(--font-ui);
-    font-style: normal;
     letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
     color: var(--saffron-200);
@@ -291,7 +290,6 @@ import SignupForm from './SignupForm.astro';
     display: block;
     font-size: 0.5em;
     font-weight: 500;
-    font-style: italic;
     color: var(--paper-200);
     margin-top: 14px;
     letter-spacing: -0.018em;
@@ -328,7 +326,7 @@ import SignupForm from './SignupForm.astro';
   .projects {
     margin-top: 48px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 14px;
   }
 
