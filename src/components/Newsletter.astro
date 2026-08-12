@@ -10,21 +10,33 @@
 
       <form
         id="newsletter-form"
-        class="flex flex-col sm:flex-row gap-3 fade-in"
+        class="flex flex-col gap-3 fade-in"
         action="#"
         method="POST"
       >
         <input
-          type="email"
-          name="email"
+          type="text"
+          name="name"
           required
-          placeholder="your@email.com"
+          placeholder="Your name"
+          autocomplete="name"
           class="flex-1 px-5 py-3.5 rounded-lg border border-white/10 bg-white/5 text-white placeholder:text-gray-500
                  focus:outline-none focus:ring-2 focus:ring-purple/50 focus:border-purple transition-all"
         />
-        <button type="submit" class="btn-primary whitespace-nowrap">
-          Subscribe
-        </button>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="your@email.com"
+            autocomplete="email"
+            class="flex-1 px-5 py-3.5 rounded-lg border border-white/10 bg-white/5 text-white placeholder:text-gray-500
+                   focus:outline-none focus:ring-2 focus:ring-purple/50 focus:border-purple transition-all"
+          />
+          <button type="submit" class="btn-primary whitespace-nowrap">
+            Subscribe
+          </button>
+        </div>
       </form>
 
       <p class="text-gray-600 text-xs mt-4 fade-in">
@@ -42,8 +54,10 @@
     document.getElementById('newsletter-form')?.addEventListener('submit', function (e) {
       e.preventDefault();
       var form = e.target;
+      var name = form.name.value.trim();
       var email = form.email.value.trim();
       var payload = {
+        name: name,
         email: email,
         source: 'saludcontech.com',
         interest: 'newsletter',
@@ -62,8 +76,8 @@
         .then(function (res) {
           if (res.ok) {
             if (window.posthog) {
-              posthog.identify(email, { email: email, source: 'saludcontech.com' });
-              posthog.capture('relaunch_signup', { email: email, interest: 'newsletter' });
+              posthog.identify(email, { name: name, email: email, source: 'saludcontech.com' });
+              posthog.capture('relaunch_signup', { name: name, email: email, interest: 'newsletter' });
             }
             form.classList.add('hidden');
             document.getElementById('newsletter-success')?.classList.remove('hidden');
