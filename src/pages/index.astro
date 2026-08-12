@@ -1,28 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Stakes from '../components/Stakes.astro';
-import ValueProp from '../components/ValueProp.astro';
-import Guide from '../components/Guide.astro';
-import Stats from '../components/Stats.astro';
-import Video from '../components/Video.astro';
-import CTA from '../components/CTA.astro';
-import Newsletter from '../components/Newsletter.astro';
-import Footer from '../components/Footer.astro';
+import LigazonHeader from '../components/LigazonHeader.astro';
+import LigazonHero from '../components/LigazonHero.astro';
+import LigazonDataViz from '../components/LigazonDataViz.astro';
+import LigazonPillars from '../components/LigazonPillars.astro';
+import LigazonCTA from '../components/LigazonCTA.astro';
+import LigazonFooter from '../components/LigazonFooter.astro';
 ---
 
-<Layout title="SaludConTech — Build the Health Tech Your Community Actually Needs">
-  <Header />
+<Layout title="SaludConTech - The Latino Entrepreneurship Community for Health Builders">
+  <LigazonHeader />
   <main>
-    <Hero />
-    <Stakes />
-    <ValueProp />
-    <Guide />
-    <Stats />
-    <Video />
-    <CTA />
-    <Newsletter />
+    <LigazonHero />
+    <LigazonDataViz />
+    <LigazonPillars />
+    <LigazonCTA />
   </main>
-  <Footer />
+  <LigazonFooter />
 </Layout>
