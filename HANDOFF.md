@@ -35,3 +35,12 @@
 - Start next session with fresh `opencode` (not `occ`) to load k3.
 - No real names in git.
 - See `CLAUDE.md` for permanent conventions and gotchas.
+
+## Update 2026-08-12 (from the ligazon orchestrator session)
+
+- **Signup form:** SignupForm.astro now captures name + email + phone + SMS consent; posts to Supabase public.signups (phone/sms_consent columns added 2026-08-12) and identifies the person in PostHog by name+email.
+- **Signup watcher:** ligazon repo scripts/signup_watch.py runs every 5 min via cron on Cortex: new signups → Listmonk "SaludConTech" list (id 3) + Twilio SMS confirmation when phone+consent present. Twilio = joincompa Full account, creds in ~/pai/secrets/ligazon_backend.env (TWILIO_*).
+- **Listmonk:** container ligazon-listmonk on Cortex (:9015). Admin UI password was reset in DB; use the API user in ~/pai/secrets/ligazon_newsletter.env (LISTMONK_API_USER/TOKEN). SMTP NOT configured yet — emails do not send until a real SMTP host is set (Gmail route blocked by passkey wall; SendGrid rejected per Daniel; Resend is the codebase's intended provider, no account yet).
+- **Visitor archetypes:** scripts/sync_posthog_archetypes.py (this repo) → public.visitor_archetypes in Supabase; runs weekly Mon 06:10 via cron. 43 archetypes at last run.
+- **Tracking verified:** signup → Supabase row (name/IP/UA) + PostHog relaunch_signup with GeoIP. Session replay ON in project 464719; dashboard "SaludConTech" (id 1986725); weekly email Monday to Daniel; daily signup alert ON.
+- **PENDING:** real-SMS end-to-end test (needs a phone number for the test text); Listmonk SMTP; welcome email delivery.
