@@ -1,0 +1,166 @@
+---
+interface Props {
+  interest?: string;
+  buttonText?: string;
+}
+
+const { interest = 'newsletter', buttonText = 'Subscribe' } = Astro.props;
+---
+
+<form id="signup-form" class="signup-form" action="#" method="POST" data-interest={interest}>
+  <div class="signup-row">
+    <input
+      type="text"
+      name="name"
+      required
+      placeholder="Your name"
+      class="signup-input"
+      aria-label="Name"
+    />
+    <input
+      type="email"
+      name="email"
+      required
+      placeholder="your@email.com"
+      class="signup-input"
+      aria-label="Email"
+    />
+    <button type="submit" class="btn btn-primary btn-glow signup-submit">
+      {buttonText}
+    </button>
+  </div>
+  <p class="signup-foot">No spam. Unsubscribe anytime.</p>
+
+  <div id="signup-success" class="signup-success hidden" hidden>
+    <p class="signup-success-title">You are in.</p>
+    <p class="signup-success-body">Check your inbox for a confirmation.</p>
+  </div>
+</form>
+
+<script is:inline>
+  (function () {
+    var form = document.getElementById('signup-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = form.email.value.trim();
+      var name = form.name.value.trim();
+      var interest = form.dataset.interest || 'newsletter';
+
+      var payload = {
+        email: email,
+        name: name,
+        source: 'saludcontech.com',
+        interest: interest,
+      };
+
+      fetch('https://jcxagmhvwakkxogfyrzv.supabase.co/rest/v1/signups', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjeGFnbWh2d2Fra3hvZ2Z5cnp2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMTQ5MTAsImV4cCI6MjA5NjY5MDkxMH0.G_iv7_Z5_TSHN7HeXsTuExRjs3edyCfPJwCc3xwc2rM',
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify(payload),
+      })
+        .then(function (res) {
+          if (res.ok) {
+            if (window.posthog) {
+              posthog.identify(email, { email: email, name: name, source: 'saludcontech.com' });
+              posthog.capture('relaunch_signup', { email: email, name: name, interest: interest });
+            }
+            form.querySelector('.signup-row').classList.add('hidden');
+            form.querySelector('.signup-foot').classList.add('hidden');
+            var success = document.getElementById('signup-success');
+            if (success) {
+              success.hidden = false;
+              success.classList.remove('hidden');
+            }
+          } else {
+            throw new Error('Signup failed: ' + res.status);
+          }
+        })
+        .catch(function (err) {
+          console.error(err);
+          alert('Something went wrong. Please try again.');
+        });
+    });
+  })();
+</script>
+
+<style>
+  .signup-form {
+    width: 100%;
+  }
+
+  .signup-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  .signup-input {
+    flex: 1 1 180px;
+    min-width: 0;
+    font: 500 1rem/1.2 var(--font-body);
+    padding: 15px 16px;
+    border: 1px solid var(--ink-900);
+    border-radius: var(--radius);
+    background: var(--paper-50);
+    color: var(--ink-900);
+  }
+
+  .signup-input::placeholder {
+    color: var(--fg-subtle);
+  }
+
+  .signup-input:focus {
+    outline: none;
+    border-color: var(--maroon-500);
+    box-shadow: 0 0 0 3px rgba(122, 38, 50, 0.18);
+  }
+
+  .signup-submit {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .signup-foot {
+    font: 400 0.82rem/1.4 var(--font-body);
+    color: rgba(244, 239, 227, 0.55);
+    margin: 12px 0 0;
+  }
+
+  .signup-success {
+    padding: 28px;
+    background: var(--ink-900);
+    color: var(--paper-50);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(212, 162, 62, 0.3);
+    text-align: center;
+  }
+
+  .signup-success.hidden {
+    display: none;
+  }
+
+  .signup-success-title {
+    font: 600 1.4rem/1.2 var(--font-display);
+    margin: 0 0 8px;
+    color: var(--saffron-200);
+  }
+
+  .signup-success-body {
+    font: 400 1rem/1.5 var(--font-body);
+    color: rgba(244, 239, 227, 0.75);
+    margin: 0;
+  }
+
+  @media (max-width: 560px) {
+    .signup-row .btn {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,116 @@
+---
+const pillars = [
+  {
+    tag: 'Connect',
+    title: 'Find your people',
+    body: 'A vetted Slack workspace, 10 city chapters, and sobremesa dinners where members share customers, co-founders, and capital.',
+  },
+  {
+    tag: 'Learn',
+    title: 'Founder education by operators',
+    body: 'Workshops on fundraising, regulatory navigation, customer discovery, and building for communities of color.',
+  },
+  {
+    tag: 'Capital',
+    title: 'Get in front of capital',
+    body: 'Warm intros to VCFamilia, Latino VC funds, and aligned angels who understand the market and the mission.',
+  },
+  {
+    tag: 'Stage',
+    title: 'A platform for visibility',
+    body: 'Speaking slots at HIMSS, SDHES, and partner events. A microphone for the founders building what others overlook.',
+  },
+];
+---
+
+<section class="section-block" id="how-it-works">
+  <div class="container-narrow">
+    <div class="section-head center">
+      <span class="label">How it works</span>
+      <h2 class="headline">Four pillars. One community.</h2>
+      <p class="lede">
+        Not a conference. Not a job board. The infrastructure for Latino builders to turn expertise into ownership.
+      </p>
+    </div>
+
+    <div class="pillars">
+      {pillars.map((p, i) => (
+        <div class="pillar">
+          <span class="pillar-num">0{i + 1}</span>
+          <span class="pillar-tag">{p.tag}</span>
+          <h3>{p.title}</h3>
+          <p>{p.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-head {
+    max-width: 50em;
+    margin: 0 auto 56px;
+  }
+
+  .section-head.center {
+    text-align: center;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .pillar {
+    padding: 32px 26px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s var(--ease-out);
+  }
+
+  .pillar:hover {
+    transform: translateY(-3px);
+    border-color: var(--clay-500);
+    box-shadow: 0 18px 36px -18px rgba(11, 15, 26, 0.18);
+  }
+
+  .pillar-num {
+    font: 700 0.75rem/1 var(--font-mono);
+    letter-spacing: 0.1em;
+    color: var(--clay-500);
+    margin-bottom: 14px;
+  }
+
+  .pillar-tag {
+    font: 600 0.7rem/1 var(--font-ui);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--maroon-500);
+    margin-bottom: 12px;
+  }
+
+  .pillar h3 {
+    font: 600 1.25rem/1.2 var(--font-display);
+    color: var(--ink-900);
+    letter-spacing: -0.012em;
+    margin: 0 0 10px;
+  }
+
+  .pillar p {
+    font: 400 0.96rem/1.55 var(--font-body);
+    color: var(--ink-700);
+    margin: 0;
+  }
+
+  @media (max-width: 980px) {
+    .pillars { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .pillars { grid-template-columns: 1fr; }
+  }
+</style>

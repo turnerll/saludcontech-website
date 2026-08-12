@@ -1,172 +1,152 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import LigazonHeader from '../components/LigazonHeader.astro';
+import PageHeader from '../components/PageHeader.astro';
+import LigazonCTA from '../components/LigazonCTA.astro';
+import LigazonFooter from '../components/LigazonFooter.astro';
 ---
 
-<Layout title="About — SaludConTech" description="SaludConTech is an inclusive ecosystem-building community that provides entrepreneurial support for digital health leaders from communities of color.">
-  <Header />
+<Layout title="About — SaludConTech" description="Founded in 2018. The cross-industry Latino entrepreneurship community where health is the common thread. 659 members. 10 city chapters.">
+  <LigazonHeader />
   <main>
-    <!-- Page Header -->
-    <section class="section-padding bg-dark relative overflow-hidden">
-      <div class="absolute top-20 right-0 w-[400px] h-[400px] bg-purple/5 rounded-full blur-[120px]"></div>
-      <div class="container-narrow relative">
-        <div class="max-w-3xl">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-purple/10 border border-purple/20 rounded-full mb-6 fade-in">
-            <span class="text-purple-300 text-sm font-medium">Our Story</span>
-          </div>
-          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 fade-in tracking-tight leading-[0.95]">
-            Those closest to the problems hold the keys to
-            <span class="gradient-text"> unlocking the solutions.</span>
-          </h1>
-          <p class="text-lg text-gray-400 leading-relaxed fade-in">
-            SaludConTech is an inclusive ecosystem-building community that provides entrepreneurial support for digital health leaders from communities of color. Founded in 2020, it operates as the innovation and entrepreneurship arm of the broader Cultura Holdings ecosystem.
-          </p>
-        </div>
-      </div>
-    </section>
+    <PageHeader
+      eyebrow="Our story"
+      title="The people closest to the problems should own the solutions."
+      subtitle="SaludConTech is where Latino founders, clinicians, funders, and operators build companies that serve the communities they come from."
+    />
 
-    <!-- Mission -->
-    <section class="section-padding bg-dark-100">
-      <div class="container-narrow">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="fade-in-left">
-            <h2 class="font-display text-3xl font-bold text-white mb-6 tracking-tight">Our Mission</h2>
-            <p class="text-gray-300 text-lg leading-relaxed mb-6">
-              SaludConTech curates, connects, and accelerates the founders who will fix health tech's equity gap. We provide community infrastructure, entrepreneurial support, and the bridge between clinical expertise and technical execution.
-            </p>
-            <p class="text-gray-400 leading-relaxed">
-              We are building the pipeline of founders from underserved communities who will create the health technology those communities actually need.
-            </p>
-          </div>
-          <div class="fade-in-right">
-            <h2 class="font-display text-3xl font-bold text-white mb-6 tracking-tight">Why Now</h2>
-            <ul class="space-y-4">
-              <li class="flex gap-3">
-                <div class="w-6 h-6 bg-purple/15 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5 border border-purple/20">
-                  <div class="w-2 h-2 bg-purple rounded-full"></div>
-                </div>
-                <p class="text-gray-400">Techqueria (25,000+ Latino tech professionals) was acquired, creating organizational uncertainty and members looking for a new home</p>
-              </li>
-              <li class="flex gap-3">
-                <div class="w-6 h-6 bg-purple/15 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5 border border-purple/20">
-                  <div class="w-2 h-2 bg-purple rounded-full"></div>
-                </div>
-                <p class="text-gray-400">Latino-owned businesses grew 44% since 2019 (Stanford Latino Entrepreneurship Initiative)</p>
-              </li>
-              <li class="flex gap-3">
-                <div class="w-6 h-6 bg-purple/15 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5 border border-purple/20">
-                  <div class="w-2 h-2 bg-purple rounded-full"></div>
-                </div>
-                <p class="text-gray-400">California investing $1.6 billion in community health worker programs, creating massive market for culturally intelligent health tech</p>
-              </li>
-              <li class="flex gap-3">
-                <div class="w-6 h-6 bg-purple/15 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5 border border-purple/20">
-                  <div class="w-2 h-2 bg-purple rounded-full"></div>
-                </div>
-                <p class="text-gray-400">Colorado AI Act takes effect June 2026, forcing every AI health company to prove equitable performance</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Team -->
-    <section class="section-padding bg-dark">
-      <div class="container-narrow">
-        <div class="text-center mb-12">
-          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-4 fade-in tracking-tight">Leadership</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-children">
-          <!-- Daniel -->
-          <div class="glass-card text-center fade-in">
-            <div class="w-24 h-24 bg-purple/10 rounded-full mx-auto mb-4 flex items-center justify-center border border-purple/20">
-              <svg class="w-12 h-12 text-purple/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-            </div>
-            <h3 class="font-display font-bold text-white text-lg">Dr. Daniel Turner-Lloveras</h3>
-            <p class="text-purple-300 text-sm font-medium mb-3">President / Founder</p>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              15 years as a physician. Faculty at UCLA and USC Keck. HLTH Foundation Techquity Advisory Council.
-            </p>
-          </div>
-
-          <!-- Community Director -->
-          <div class="glass-card text-center border-dashed fade-in">
-            <div class="w-24 h-24 bg-white/5 rounded-full mx-auto mb-4 flex items-center justify-center border border-white/10">
-              <svg class="w-12 h-12 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
-              </svg>
-            </div>
-            <h3 class="font-display font-bold text-white text-lg">Community Director</h3>
-            <p class="text-purple-300 text-sm font-medium mb-3">Now Recruiting</p>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              15-20 hrs/week. Volunteer to paid ($60K-$80K + equity) upon securing first $100K in grants.
-            </p>
-            <a href="/volunteer" class="text-purple-300 text-sm font-medium mt-3 inline-block hover:underline">
-              Learn more &rarr;
-            </a>
-          </div>
-
-          <!-- Programs Director -->
-          <div class="glass-card text-center border-dashed fade-in">
-            <div class="w-24 h-24 bg-white/5 rounded-full mx-auto mb-4 flex items-center justify-center border border-white/10">
-              <svg class="w-12 h-12 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
-              </svg>
-            </div>
-            <h3 class="font-display font-bold text-white text-lg">Programs Director</h3>
-            <p class="text-gray-500 text-sm font-medium mb-3">Phase 2 Hire</p>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              10-15 hrs/week. Will lead founder fellowships and accelerator programs.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Advisory Board -->
-    <section class="section-padding bg-dark-100">
-      <div class="container-narrow">
-        <div class="text-center mb-12">
-          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-4 fade-in tracking-tight">Advisory Board</h2>
-          <p class="text-gray-400 text-lg fade-in">Recruiting 5-7 members across health tech, policy, investing, community, and academia.</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
-          {[
-            { seat: 'Health Tech Executive', why: 'Opens doors to health system partnerships' },
-            { seat: 'Latino Health Policy', why: 'Grants credibility with foundations' },
-            { seat: 'VC / Investor', why: 'Investor pipeline for SCT founders' },
-            { seat: 'Community Organizer', why: 'Grounds strategy in community reality' },
-            { seat: 'Tech Industry Leader', why: 'Technical credibility for AI equity work' },
-            { seat: 'Academic / Researcher', why: 'Research partnerships, evidence base' },
-          ].map((seat) => (
-            <div class="p-6 border border-white/10 rounded-xl hover:border-purple/30 transition-colors fade-in bg-white/5">
-              <h3 class="font-display font-bold text-white mb-2">{seat.seat}</h3>
-              <p class="text-gray-400 text-sm">{seat.why}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Ecosystem -->
-    <section class="section-padding bg-dark relative overflow-hidden">
-      <div class="absolute top-0 left-1/3 w-[500px] h-[400px] bg-purple/5 rounded-full blur-[120px]"></div>
-      <div class="container-narrow text-center relative">
-        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-6 fade-in tracking-tight">Cultura Holdings Ecosystem</h2>
-        <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-8 fade-in">
-          SaludConTech is the innovation and entrepreneurship arm of Cultura Holdings — a holding company building the infrastructure for Latino professional advancement.
+    <section class="section-block">
+      <div class="reading-col">
+        <p class="body-text" style="font-size: 1.18rem; margin-bottom: 24px;">
+          Founded in 2018, SaludConTech grew from a simple belief: the people closest to a community's health challenges should be the ones building the companies that solve them.
         </p>
-        <a href="/contact" class="btn-primary">
-          Partner With Us
-        </a>
+        <p class="body-text" style="margin-bottom: 24px;">
+          We are not a health tech organization. We are a cross-industry entrepreneurship community where health is the common thread. Our members come from medicine, engineering, venture capital, public health, policy, and operations. What ties them together is a shared conviction that ownership and leadership should reflect the communities being served.
+        </p>
+        <p class="body-text" style="margin-bottom: 24px;">
+          Today the community includes 659 members across 10 city chapters. We run monthly virtual calls, quarterly dinners in Los Angeles, and a Slack workspace where members share customers, co-founders, and capital.
+        </p>
+        <p class="body-text">
+          SaludConTech is part of the Cultura Holdings ecosystem.
+        </p>
       </div>
     </section>
+
+    <section class="section-block alt">
+      <div class="container-narrow">
+        <div class="section-head center">
+          <span class="label">Leadership</span>
+          <h2 class="headline">The team building this</h2>
+        </div>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-avatar">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Dr. Daniel Turner-Lloveras</h3>
+            <p class="team-role">President / Founder</p>
+            <p class="team-bio">Physician, faculty at UCLA and USC Keck, and HLTH Foundation Techquity Advisory Council member.</p>
+          </div>
+          <div class="team-card team-card--open">
+            <div class="team-avatar">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Community Director</h3>
+            <p class="team-role">Now recruiting</p>
+            <p class="team-bio">15-20 hours per week. Volunteer to paid upon first $100K in grants.</p>
+            <a href="/volunteer" class="team-link">Learn more &rarr;</a>
+          </div>
+          <div class="team-card team-card--open">
+            <div class="team-avatar">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Programs Director</h3>
+            <p class="team-role">Phase 2 hire</p>
+            <p class="team-bio">10-15 hours per week. Will lead founder fellowships and accelerator programs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <LigazonCTA />
   </main>
-  <Footer />
+  <LigazonFooter />
 </Layout>
+
+<style>
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 48px;
+  }
+
+  .team-card {
+    padding: 32px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: all 0.2s var(--ease-out);
+  }
+
+  .team-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--clay-500);
+  }
+
+  .team-card--open {
+    border-style: dashed;
+    border-color: var(--rule-strong);
+  }
+
+  .team-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--paper-100);
+    color: var(--clay-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+  }
+
+  .team-card h3 {
+    font: 600 1.25rem/1.2 var(--font-display);
+    color: var(--ink-900);
+    margin: 0 0 6px;
+  }
+
+  .team-role {
+    font: 600 0.78rem/1 var(--font-ui);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--maroon-500);
+    margin: 0 0 14px;
+  }
+
+  .team-bio {
+    font: 400 0.95rem/1.55 var(--font-body);
+    color: var(--ink-700);
+    margin: 0;
+  }
+
+  .team-link {
+    display: inline-block;
+    margin-top: 14px;
+    font: 600 0.9rem/1 var(--font-ui);
+    color: var(--maroon-500);
+    text-decoration: none;
+  }
+
+  @media (max-width: 980px) {
+    .team-grid { grid-template-columns: 1fr; }
+  }
+</style>

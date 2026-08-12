@@ -1,0 +1,150 @@
+/* ============================================================
+   LIGAZON design tokens ported for SaludConTech
+   ------------------------------------------------------------
+   Coalition palette: midnight ink, warm clay terracotta,
+   saffron gold, deep moss green. Cream paper replaces pure white.
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+:root {
+  /* ---------- COALITION PALETTE ---------- */
+  --ink-950: #0C1F16;
+  --ink-900: #163528;
+  --ink-800: #1F4636;
+  --ink-700: #2D5C48;
+  --ink-600: #426E58;
+
+  --paper-50:  #FBF7EE;
+  --paper-100: #F5EDDE;
+  --paper-200: #ECE0C9;
+  --paper-300: #DBC9A6;
+
+  --clay-50:  #FBEFE9;
+  --clay-100: #F4D4C5;
+  --clay-200: #E8A98F;
+  --clay-300: #D5764F;
+  --clay-500: #B5491C;
+  --clay-600: #993D17;
+  --clay-700: #7A2F11;
+
+  --saffron-50:  #FAF1DA;
+  --saffron-100: #F4DFA8;
+  --saffron-200: #ECC972;
+  --saffron-300: #E3BC5A;
+  --saffron-500: #D4A23E;
+  --saffron-600: #B0832B;
+  --saffron-700: #836018;
+
+  --moss-50:  #E6EFE9;
+  --moss-100: #BDD5C5;
+  --moss-300: #5C8A72;
+  --moss-400: #3A6B52;
+  --moss-500: #1E4A37;
+  --moss-600: #173A2B;
+  --moss-700: #0F2C1F;
+
+  --maroon-50:  #F7E5E8;
+  --maroon-100: #ECC3CB;
+  --maroon-200: #C68490;
+  --maroon-300: #A85365;
+  --maroon-400: #8E2E3C;
+  --maroon-500: #7A2632;
+  --maroon-700: #4F1820;
+
+  --gold-400: #D8A93B;
+  --gold-500: #B0832B;
+  --gold-600: #8C6720;
+  --gold-700: #6B4E18;
+
+  /* ---------- SEMANTIC TOKENS ---------- */
+  --bg:          var(--paper-50);
+  --bg-elevated: #FFFFFF;
+  --bg-sunken:   var(--paper-100);
+  --fg:          var(--ink-900);
+  --fg-muted:    var(--ink-700);
+  --fg-subtle:   #5B6781;
+  --fg-on-dark:  var(--paper-50);
+  --rule:        rgba(18, 24, 38, 0.14);
+  --rule-strong: rgba(18, 24, 38, 0.32);
+  --accent:      var(--clay-500);
+  --accent-hover:var(--clay-600);
+  --accent-soft: var(--clay-50);
+  --highlight:   var(--saffron-500);
+  --trust:       var(--moss-500);
+  --focus-ring:  color-mix(in oklch, var(--clay-500) 50%, transparent);
+
+  --bg-dark:        var(--ink-950);
+  --bg-dark-elev:   var(--ink-900);
+  --bg-dark-sunken: #07090F;
+  --fg-on-bg-dark:  #F4EFE3;
+  --rule-on-dark:   rgba(244, 239, 227, 0.10);
+
+  /* ---------- TYPE FAMILIES ---------- */
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-ui:      "Space Grotesk", "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body:    "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ---------- TYPE SCALE ---------- */
+  --leading-tight: 1.05;
+  --leading-snug:  1.2;
+  --leading-body:  1.55;
+  --leading-loose: 1.7;
+
+  --tracking-tight:  -0.022em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-eyebrow: 0.18em;
+
+  --display-1: 700 clamp(3rem, 6vw + 1rem, 5.75rem)/var(--leading-tight) var(--font-display);
+  --display-2: 600 clamp(2.25rem, 4vw + 1rem, 4rem)/var(--leading-tight) var(--font-display);
+  --headline:  600 clamp(1.75rem, 2vw + 1rem, 2.5rem)/var(--leading-snug) var(--font-display);
+  --title:     500 1.5rem/1.25 var(--font-display);
+  --subtitle:  500 1.125rem/1.4 var(--font-ui);
+
+  --body-lg:   400 1.1875rem/var(--leading-body) var(--font-body);
+  --body:      400 1rem/var(--leading-body) var(--font-body);
+  --body-sm:   400 0.875rem/1.5 var(--font-body);
+  --caption:   500 0.75rem/1.35 var(--font-ui);
+  --eyebrow:   600 0.75rem/1 var(--font-ui);
+  --mono:      400 0.9375rem/1.55 var(--font-mono);
+
+  /* ---------- SPACING / RADII / SHADOW ---------- */
+  --s-1: 0.25rem; --s-2: 0.5rem;  --s-3: 0.75rem; --s-4: 1rem;
+  --s-5: 1.5rem;  --s-6: 2rem;    --s-7: 3rem;    --s-8: 4rem;
+  --s-9: 6rem;    --s-10: 8rem;
+
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 22px;
+  --radius-pill: 999px;
+
+  --shadow-sm:    0 1px 2px rgba(11, 15, 26, 0.06);
+  --shadow:       0 6px 20px -10px rgba(11, 15, 26, 0.20), 0 2px 6px rgba(11, 15, 26, 0.06);
+  --shadow-lg:    0 24px 48px -24px rgba(11, 15, 26, 0.30), 0 8px 16px -8px rgba(11, 15, 26, 0.10);
+  --shadow-ring:  inset 0 0 0 1px var(--rule);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:  cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--fg);
+  background: var(--bg);
+  font: var(--body);
+  font-feature-settings: "ss01", "cv11";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--saffron-200);
+  color: var(--ink-900);
+}

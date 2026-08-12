@@ -1,66 +1,158 @@
-<section class="section-padding">
+---
+const rings = [
+  {
+    num: '1',
+    title: 'Public',
+    subtitle: 'Anyone',
+    body: 'Website, newsletter, social media',
+    cta: 'Sign up',
+    featured: false,
+  },
+  {
+    num: '2',
+    title: 'Member',
+    subtitle: 'Approved applicants',
+    body: 'Slack workspace, virtual events',
+    cta: 'Application + interview',
+    featured: true,
+  },
+  {
+    num: '3',
+    title: 'Builder',
+    subtitle: 'Active volunteers + founders',
+    body: 'In-person dinners, mentorship, introductions',
+    cta: '90-day sprint or founder app',
+    featured: true,
+  },
+  {
+    num: '4',
+    title: 'Founding Circle',
+    subtitle: 'Advisory board + early supporters',
+    body: 'Strategic input, governance voice, founding recognition',
+    cta: 'Invitation from Daniel',
+    featured: 'highlight',
+  },
+];
+---
+
+<section class="section-block dark">
   <div class="container-narrow">
-    <div class="text-center mb-16">
-      <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-4 fade-in tracking-tight">
-        Inner Rings of Belonging
-      </h2>
-      <p class="text-gray-400 text-lg max-w-2xl mx-auto fade-in">
-        Not everyone gets the same access. Deeper involvement earns deeper belonging.
-      </p>
+    <div class="section-head center">
+      <span class="label">Inner rings of belonging</span>
+      <h2 class="headline">Not everyone gets the same access. Deeper involvement earns deeper belonging.</h2>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
-      <!-- Ring 1: Public -->
-      <div class="glass-card text-center fade-in">
-        <div class="w-12 h-12 bg-white/5 rounded-full mx-auto mb-4 flex items-center justify-center border border-white/10">
-          <span class="text-lg font-bold text-gray-400">1</span>
+    <div class="rings-grid">
+      {rings.map((ring) => (
+        <div class:list={['ring-card', ring.featured === 'highlight' && 'ring-card--highlight', ring.featured === true && 'ring-card--featured']}>
+          <div class="ring-num">{ring.num}</div>
+          <h3>{ring.title}</h3>
+          <p class="ring-subtitle">{ring.subtitle}</p>
+          <p class="ring-body">{ring.body}</p>
+          <div class="ring-cta">{ring.cta}</div>
         </div>
-        <h3 class="font-display font-bold text-white mb-2">Public</h3>
-        <p class="text-sm text-gray-400 mb-3">Anyone</p>
-        <p class="text-xs text-gray-500">Website, newsletter, social media</p>
-        <div class="mt-4 pt-4 border-t border-white/10">
-          <span class="text-xs font-medium text-purple-300">Sign up</span>
-        </div>
-      </div>
-
-      <!-- Ring 2: Member -->
-      <div class="glass-card text-center border-purple/20 fade-in">
-        <div class="w-12 h-12 bg-purple/10 rounded-full mx-auto mb-4 flex items-center justify-center border border-purple/20">
-          <span class="text-lg font-bold text-purple-300">2</span>
-        </div>
-        <h3 class="font-display font-bold text-white mb-2">Member</h3>
-        <p class="text-sm text-gray-400 mb-3">Approved Applicants</p>
-        <p class="text-xs text-gray-500">Slack workspace, virtual events</p>
-        <div class="mt-4 pt-4 border-t border-white/10">
-          <span class="text-xs font-medium text-purple-300">Application + interview</span>
-        </div>
-      </div>
-
-      <!-- Ring 3: Builder -->
-      <div class="glass-card text-center border-purple/30 fade-in">
-        <div class="w-12 h-12 bg-purple/15 rounded-full mx-auto mb-4 flex items-center justify-center border border-purple/30">
-          <span class="text-lg font-bold text-purple-200">3</span>
-        </div>
-        <h3 class="font-display font-bold text-white mb-2">Builder</h3>
-        <p class="text-sm text-gray-400 mb-3">Active Volunteers + Founders</p>
-        <p class="text-xs text-gray-500">In-person dinners, mentorship, introductions</p>
-        <div class="mt-4 pt-4 border-t border-white/10">
-          <span class="text-xs font-medium text-purple-300">90-day sprint or founder app</span>
-        </div>
-      </div>
-
-      <!-- Ring 4: Founding Circle -->
-      <div class="glass-card text-center border-purple/40 bg-purple/5 fade-in">
-        <div class="w-12 h-12 bg-purple rounded-full mx-auto mb-4 flex items-center justify-center">
-          <span class="text-lg font-bold text-white">4</span>
-        </div>
-        <h3 class="font-display font-bold text-white mb-2">Founding Circle</h3>
-        <p class="text-sm text-gray-400 mb-3">Advisory Board + Early Supporters</p>
-        <p class="text-xs text-gray-500">Strategic input, governance voice, founding recognition</p>
-        <div class="mt-4 pt-4 border-t border-white/10">
-          <span class="text-xs font-medium text-purple-300">Invitation from Daniel</span>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
+
+<style>
+  .section-head {
+    max-width: 50em;
+    margin: 0 auto 56px;
+  }
+
+  .section-head.center {
+    text-align: center;
+  }
+
+  .rings-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .ring-card {
+    padding: 32px 26px;
+    background: rgba(244, 239, 227, 0.05);
+    border: 1px solid var(--rule-on-dark);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: all 0.2s var(--ease-out);
+  }
+
+  .ring-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--saffron-500);
+  }
+
+  .ring-card--featured {
+    border-color: rgba(212, 162, 62, 0.35);
+  }
+
+  .ring-card--highlight {
+    background: rgba(122, 38, 50, 0.12);
+    border-color: var(--maroon-500);
+  }
+
+  .ring-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font: 700 1rem/1 var(--font-ui);
+    background: rgba(244, 239, 227, 0.1);
+    color: rgba(244, 239, 227, 0.7);
+    border: 1px solid rgba(244, 239, 227, 0.15);
+  }
+
+  .ring-card--featured .ring-num {
+    background: rgba(212, 162, 62, 0.15);
+    color: var(--saffron-500);
+    border-color: var(--saffron-500);
+  }
+
+  .ring-card--highlight .ring-num {
+    background: var(--maroon-500);
+    color: var(--paper-50);
+    border-color: var(--maroon-500);
+  }
+
+  .ring-card h3 {
+    font: 600 1.25rem/1.2 var(--font-display);
+    color: var(--paper-50);
+    margin: 0 0 8px;
+  }
+
+  .ring-subtitle {
+    font: 400 0.92rem/1.4 var(--font-body);
+    color: rgba(244, 239, 227, 0.65);
+    margin: 0 0 12px;
+  }
+
+  .ring-body {
+    font: 400 0.85rem/1.5 var(--font-body);
+    color: rgba(244, 239, 227, 0.55);
+    margin: 0 0 18px;
+  }
+
+  .ring-cta {
+    font: 600 0.75rem/1 var(--font-ui);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--saffron-500);
+    padding-top: 16px;
+    border-top: 1px solid rgba(244, 239, 227, 0.1);
+  }
+
+  @media (max-width: 980px) {
+    .rings-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .rings-grid { grid-template-columns: 1fr; }
+  }
+</style>
