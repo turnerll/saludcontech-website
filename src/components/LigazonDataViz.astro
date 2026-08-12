@@ -1,7 +1,7 @@
 ---
 import { SCT_FACTS } from '../data/sctFacts';
 
-const { approved } = SCT_FACTS;
+const { approved, members, cityChapters, latinoBusinessRevenue } = SCT_FACTS;
 
 // Bars: label, value (pct), color role, source note.
 const bars = [
@@ -44,19 +44,19 @@ const bars = [
 
       <div class="stat-cards">
         <div class="stat-card">
-          <span class="stat-num anim-num" data-target="659" data-suffix="+">0</span>
+          <span class="stat-num anim-num" data-target={members.value} data-suffix="+">0</span>
           <span class="stat-lbl">Community members</span>
         </div>
         <div class="stat-card">
-          <span class="stat-num anim-num" data-target="10" data-suffix="">0</span>
+          <span class="stat-num anim-num" data-target={cityChapters.value} data-suffix="">0</span>
           <span class="stat-lbl">City chapters</span>
         </div>
         <div class="stat-card">
-          <span class="stat-num anim-num" data-target="4.1" data-decimals="1" data-prefix="$" data-suffix="T">$0T</span>
+          <span class="stat-num anim-num" data-target={approved.latinoGdpTrillions} data-decimals="1" data-prefix="$" data-suffix="T">$0T</span>
           <span class="stat-lbl">Latino US GDP</span>
         </div>
         <div class="stat-card">
-          <span class="stat-num anim-num" data-target="800" data-prefix="$" data-suffix="B">$0B</span>
+          <span class="stat-num anim-num" data-target={latinoBusinessRevenue.value} data-prefix="$" data-suffix="B">$0B</span>
           <span class="stat-lbl">Latino-owned business revenue</span>
         </div>
       </div>
