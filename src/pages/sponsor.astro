@@ -1,0 +1,321 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LigazonHeader from '../components/LigazonHeader.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SignupForm from '../components/SignupForm.astro';
+import LigazonFooter from '../components/LigazonFooter.astro';
+---
+
+<Layout title="Sponsor | SaludConTech" description="Put your brand in the room where Latino founders, clinicians, funders, and operators convene. 659 members. 10 city chapters. Sponsor SaludConTech.">
+  <LigazonHeader />
+  <main>
+    <PageHeader
+      eyebrow="Sponsor"
+      title="Put your brand in the room where Latino health innovation happens."
+      subtitle="659 members. 10 city chapters. Founders, clinicians, funders, and operators who make decisions. This is where they gather."
+    />
+
+    <section class="section-block">
+      <div class="container-narrow">
+        <div class="section-head center">
+          <span class="label">The room</span>
+          <h2 class="headline">Your audience is already here.</h2>
+        </div>
+        <div class="audience-grid">
+          <div class="audience-card">
+            <h3>659 members</h3>
+            <p>Medicine, engineering, venture, public health. The people who build, buy, and allocate capital.</p>
+          </div>
+          <div class="audience-card">
+            <h3>10 city chapters</h3>
+            <p>LA, NYC, SF, Houston, Miami, Chicago, Dallas, San Antonio, Phoenix, and San Diego. National footprint, local depth.</p>
+          </div>
+          <div class="audience-card">
+            <h3>Decision-makers</h3>
+            <p>Founders raising rounds. Clinicians selecting tools. Operators choosing vendors. These are the people you want to reach.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block alt">
+      <div class="container-narrow">
+        <div class="section-head center">
+          <span class="label">Partnership tiers</span>
+          <h2 class="headline">Four ways in. Clear terms.</h2>
+        </div>
+        <div class="tier-grid">
+          <div class="tier-card featured">
+            <div class="tier-header">
+              <span class="tier-name">Platinum</span>
+              <span class="tier-price">$100K</span>
+            </div>
+            <span class="tier-availability">1 available</span>
+            <ul class="tier-list">
+              <li>Category exclusivity</li>
+              <li>Keynote slot at a major event</li>
+              <li>Direct introductions to members</li>
+              <li>Logo on every surface</li>
+            </ul>
+          </div>
+          <div class="tier-card">
+            <div class="tier-header">
+              <span class="tier-name">Gold</span>
+              <span class="tier-price">$50K</span>
+            </div>
+            <span class="tier-availability">2 available</span>
+            <ul class="tier-list">
+              <li>Speaking slot at a chapter event</li>
+              <li>Event presence and table</li>
+              <li>Logo on site and materials</li>
+            </ul>
+          </div>
+          <div class="tier-card">
+            <div class="tier-header">
+              <span class="tier-name">Silver</span>
+              <span class="tier-price">$25K</span>
+            </div>
+            <span class="tier-availability">4 available</span>
+            <ul class="tier-list">
+              <li>Event presence at chapter events</li>
+              <li>Logo on site and materials</li>
+            </ul>
+          </div>
+          <div class="tier-card">
+            <div class="tier-header">
+              <span class="tier-name">Bronze</span>
+              <span class="tier-price">$10K</span>
+            </div>
+            <span class="tier-availability">8 available</span>
+            <ul class="tier-list">
+              <li>Logo on site and community materials</li>
+              <li>Community access and recognition</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="reading-col">
+        <div class="section-head" style="margin-bottom: 32px;">
+          <span class="label">Why now</span>
+          <h2 class="headline">This is a relaunch, not a maintenance year.</h2>
+        </div>
+        <p class="body-text" style="font-size: 1.18rem; margin-bottom: 24px;">
+          SaludConTech is rebuilding with intent. Founding sponsors get locked-in recognition and terms that will not be offered again.
+        </p>
+        <p class="body-text" style="margin-bottom: 24px;">
+          The brands that get in now become part of the origin story. You are not buying ad space. You are buying a seat at the table where the work gets done.
+        </p>
+        <p class="body-text">
+          We limit each tier on purpose. Scarcity keeps the room credible. Your association with SaludConTech signals that you back the builders others overlook.
+        </p>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="container-narrow">
+        <h2>Start the conversation</h2>
+        <p>Tell us what you are building and who you need to reach. We will respond within two business days.</p>
+        <div class="cta-form-wrap">
+          <SignupForm interest="sponsor" buttonText="Start the conversation" />
+        </div>
+      </div>
+    </section>
+  </main>
+  <LigazonFooter />
+</Layout>
+
+<style>
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 48px;
+  }
+
+  .audience-card {
+    padding: 28px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: all 0.2s var(--ease-out);
+  }
+
+  .audience-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--clay-500);
+  }
+
+  .audience-card h3 {
+    font: 600 1.15rem/1.2 var(--font-display);
+    color: var(--ink-900);
+    margin: 0 0 10px;
+  }
+
+  .audience-card p {
+    font: 400 0.96rem/1.55 var(--font-body);
+    color: var(--ink-700);
+    margin: 0;
+  }
+
+  .tier-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 48px;
+  }
+
+  .tier-card {
+    padding: 28px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+    transition: all 0.2s var(--ease-out);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tier-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--clay-500);
+    box-shadow: 0 18px 36px -18px rgba(11, 15, 26, 0.18);
+  }
+
+  .tier-card.featured {
+    border-top: 2px solid var(--saffron-500);
+  }
+
+  .tier-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .tier-name {
+    font: 600 1.2rem/1.2 var(--font-display);
+    color: var(--ink-900);
+  }
+
+  .tier-price {
+    font: 600 1.15rem/1.2 var(--font-ui);
+    color: var(--clay-600);
+  }
+
+  .tier-availability {
+    font: 600 0.7rem/1 var(--font-ui);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--maroon-500);
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .tier-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tier-list li {
+    font: 400 0.96rem/1.5 var(--font-body);
+    color: var(--ink-700);
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .tier-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--saffron-500);
+  }
+
+  .final-cta {
+    padding: 100px 0;
+    text-align: center;
+    background: var(--ink-900);
+    color: var(--paper-50);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-cta::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 460px;
+    height: 460px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(122, 38, 50, 0.24), transparent);
+    filter: blur(80px);
+  }
+
+  .final-cta::after {
+    content: "";
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 460px;
+    height: 460px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(212, 162, 62, 0.16), transparent);
+    filter: blur(80px);
+  }
+
+  .final-cta .container-narrow {
+    position: relative;
+  }
+
+  .final-cta h2 {
+    font: 600 clamp(2.2rem, 3.4vw + 1rem, 3.4rem)/1.05 var(--font-display);
+    color: var(--paper-50);
+    letter-spacing: -0.026em;
+    margin: 0 auto 18px;
+    text-wrap: balance;
+    max-width: 18ch;
+  }
+
+  .final-cta p {
+    font: 400 1.15rem/1.55 var(--font-body);
+    color: rgba(244, 239, 227, 0.72);
+    max-width: 36em;
+    margin: 0 auto 36px;
+  }
+
+  .cta-form-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px;
+    background: rgba(12, 31, 22, 0.45);
+    border: 1px solid rgba(212, 162, 62, 0.3);
+    border-radius: var(--radius-lg);
+  }
+
+  .cta-form-wrap .signup-foot {
+    color: rgba(244, 239, 227, 0.55);
+  }
+
+  @media (max-width: 980px) {
+    .audience-grid { grid-template-columns: 1fr 1fr; }
+    .tier-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .audience-grid { grid-template-columns: 1fr; }
+    .tier-grid { grid-template-columns: 1fr; }
+    .final-cta { padding: 72px 0; }
+  }
+</style>
