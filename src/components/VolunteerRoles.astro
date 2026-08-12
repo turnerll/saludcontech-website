@@ -4,74 +4,125 @@ const roles = [
     title: 'Slack Community Manager',
     hours: '5-8 hrs/week',
     skills: 'Community moderation, engagement strategy, bilingual preferred',
-    icon: '💬',
   },
   {
     title: 'Customer Discovery Lead',
     hours: '5-8 hrs/week',
     skills: 'User research, interview skills, empathy mapping',
-    icon: '🔍',
   },
   {
     title: 'Social Media Coordinator',
     hours: '4-6 hrs/week',
     skills: 'LinkedIn/Instagram, Canva, healthcare content creation',
-    icon: '📱',
   },
   {
     title: 'Events Coordinator',
     hours: '4-6 hrs/week',
     skills: 'Event planning, logistics, Eventbrite/Luma, RSVP management',
-    icon: '📅',
   },
   {
     title: 'Grant Writer',
     hours: '10-15 hrs total',
     skills: 'Foundation grant experience, LOI drafting, budget narrative',
-    icon: '✍️',
   },
   {
     title: 'Web Developer',
     hours: '5-10 hrs total',
     skills: 'Astro/Next.js, responsive design, CMS setup',
-    icon: '💻',
   },
   {
     title: 'Content Writer',
     hours: '3-5 hrs/week',
     skills: 'Healthcare writing, storytelling, newsletter production',
-    icon: '📝',
   },
 ];
 ---
 
-<section class="section-padding bg-dark">
+<section class="section-block dark">
   <div class="container-narrow">
-    <div class="text-center mb-16">
-      <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-4 fade-in tracking-tight">
-        Open Roles
-      </h2>
-      <p class="text-gray-400 text-lg max-w-2xl mx-auto fade-in">
-        We're building the founding team. Every role is a 90-day sprint commitment.
+    <div class="section-head center">
+      <span class="label">Open roles</span>
+      <h2 class="headline">We are building the founding team</h2>
+      <p class="lede" style="color: rgba(244,239,227,0.7);">
+        Every role is a 90-day sprint commitment. Apply through the contact form and mention the role in your message.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
+    <div class="roles-grid">
       {roles.map((role) => (
-        <div class="glass-card fade-in group hover:border-purple/30">
-          <div class="text-3xl mb-4">{role.icon}</div>
-          <h3 class="font-display font-bold text-white text-lg mb-2 group-hover:text-purple-300 transition-colors">
-            {role.title}
-          </h3>
-          <div class="inline-flex items-center gap-1 px-2 py-1 bg-purple/10 border border-purple/20 rounded text-xs font-medium text-purple-300 mb-3">
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <div class="role-card">
+          <h3>{role.title}</h3>
+          <div class="role-hours">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             {role.hours}
           </div>
-          <p class="text-gray-400 text-sm leading-relaxed">{role.skills}</p>
+          <p>{role.skills}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .section-head {
+    max-width: 50em;
+    margin: 0 auto 56px;
+  }
+
+  .section-head.center {
+    text-align: center;
+  }
+
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .role-card {
+    padding: 28px;
+    background: rgba(244, 239, 227, 0.05);
+    border: 1px solid var(--rule-on-dark);
+    border-radius: var(--radius-lg);
+    transition: all 0.2s var(--ease-out);
+  }
+
+  .role-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--saffron-500);
+  }
+
+  .role-card h3 {
+    font: 600 1.15rem/1.2 var(--font-display);
+    color: var(--paper-50);
+    margin: 0 0 12px;
+  }
+
+  .role-hours {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: rgba(212, 162, 62, 0.12);
+    border-radius: 999px;
+    font: 600 0.72rem/1 var(--font-ui);
+    color: var(--saffron-500);
+    margin-bottom: 14px;
+  }
+
+  .role-card p {
+    font: 400 0.95rem/1.55 var(--font-body);
+    color: rgba(244, 239, 227, 0.7);
+    margin: 0;
+  }
+
+  @media (max-width: 980px) {
+    .roles-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .roles-grid { grid-template-columns: 1fr; }
+  }
+</style>
