@@ -1,0 +1,56 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  subtitle?: string;
+  dark?: boolean;
+}
+
+const { eyebrow, title, subtitle, dark = true } = Astro.props;
+---
+
+<section class:list={['page-header', dark && 'dark']}>
+  <div class="container-narrow">
+    <span class="label">{eyebrow}</span>
+    <h1>{title}</h1>
+    {subtitle && <p>{subtitle}</p>}
+  </div>
+</section>
+
+<style>
+  .page-header {
+    padding: 96px 0 72px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header.dark {
+    background: linear-gradient(160deg, var(--moss-500) 0%, var(--ink-900) 65%, #0a1a13 100%);
+    color: var(--paper-50);
+  }
+
+  .page-header .label {
+    color: var(--saffron-200);
+    margin-bottom: 18px;
+  }
+
+  .page-header h1 {
+    font: 600 clamp(2.4rem, 5vw + 1rem, 4.5rem)/1.02 var(--font-display);
+    letter-spacing: -0.03em;
+    margin: 0 0 20px;
+    text-wrap: balance;
+    max-width: 14ch;
+  }
+
+  .page-header p {
+    font: 400 1.24rem/1.6 var(--font-body);
+    color: rgba(244, 239, 227, 0.78);
+    max-width: 44em;
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 760px) {
+    .page-header { padding: 72px 0 56px; }
+  }
+</style>

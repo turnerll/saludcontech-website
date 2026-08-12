@@ -1,0 +1,253 @@
+---
+const navLinks = [
+  { label: 'About', href: '/about' },
+  { label: 'Community', href: '/community' },
+  { label: 'Volunteer', href: '/volunteer' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container-narrow nav">
+    <a class="brand" href="/">
+      <span class="brand-mark">SCT</span>
+      <span class="brand-name">SaludConTech</span>
+    </a>
+
+    <nav class="desktop-nav">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={['link', currentPath === link.href && 'active']}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <a class="cta" href="/community">Join us</a>
+
+    <button
+      id="mobile-menu-btn"
+      class="mobile-menu-btn"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<div class="header-spacer"></div>
+
+<!-- Mobile menu -->
+<div id="mobile-menu" class="mobile-menu" hidden>
+  <div class="mobile-menu-inner">
+    <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" />
+      </svg>
+    </button>
+    <nav class="mobile-nav">
+      {navLinks.map((link) => (
+        <a href={link.href} class:list={['mobile-link', currentPath === link.href && 'active']}>
+          {link.label}
+        </a>
+      ))}
+      <a href="/community" class="btn btn-primary mobile-cta">Join us</a>
+    </nav>
+  </div>
+</div>
+<div id="mobile-overlay" class="mobile-overlay" hidden></div>
+
+<script is:inline>
+  (function () {
+    var menuBtn = document.getElementById('mobile-menu-btn');
+    var closeBtn = document.getElementById('mobile-menu-close');
+    var menu = document.getElementById('mobile-menu');
+    var overlay = document.getElementById('mobile-overlay');
+
+    function openMenu() {
+      menu.hidden = false;
+      overlay.hidden = false;
+      menuBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      menu.hidden = true;
+      overlay.hidden = true;
+      menuBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    if (menuBtn) menuBtn.addEventListener('click', openMenu);
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    if (overlay) overlay.addEventListener('click', closeMenu);
+  })();
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(251, 247, 238, 0.92);
+    backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .brand-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--maroon-500);
+    color: var(--paper-50);
+    font: 700 0.85rem/1 var(--font-ui);
+    border-radius: var(--radius);
+  }
+
+  .brand-name {
+    font: 600 1.1rem/1 var(--font-ui);
+    color: var(--ink-900);
+    letter-spacing: -0.01em;
+  }
+
+  .desktop-nav {
+    display: flex;
+    gap: 28px;
+  }
+
+  .desktop-nav .link {
+    font: 500 0.92rem/1 var(--font-ui);
+    color: var(--ink-700);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .desktop-nav .link:hover,
+  .desktop-nav .link.active {
+    color: var(--maroon-500);
+  }
+
+  .cta {
+    background: var(--maroon-500);
+    color: var(--paper-50);
+    padding: 11px 18px;
+    border-radius: var(--radius);
+    font: 600 0.85rem/1 var(--font-ui);
+    text-decoration: none;
+    transition: background 0.2s var(--ease-out);
+  }
+
+  .cta:hover {
+    background: var(--maroon-700);
+    color: var(--paper-50);
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: 0;
+    color: var(--ink-900);
+    cursor: pointer;
+    padding: 6px;
+  }
+
+  .header-spacer {
+    height: 72px;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(320px, 85vw);
+    height: 100%;
+    background: var(--paper-50);
+    z-index: 60;
+    box-shadow: -24px 0 48px rgba(11, 15, 26, 0.18);
+    animation: mobileReveal 0.25s var(--ease-out);
+  }
+
+  @keyframes mobileReveal {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+
+  .mobile-menu-inner {
+    padding: 24px;
+  }
+
+  .mobile-menu-close {
+    display: flex;
+    margin-left: auto;
+    background: transparent;
+    border: 0;
+    color: var(--ink-900);
+    cursor: pointer;
+    padding: 6px;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .mobile-link {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    font: 500 1.1rem/1 var(--font-ui);
+    color: var(--ink-900);
+    text-decoration: none;
+  }
+
+  .mobile-link.active {
+    color: var(--maroon-500);
+  }
+
+  .mobile-cta {
+    margin-top: 16px;
+    justify-content: center;
+  }
+
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(12, 31, 22, 0.45);
+    z-index: 55;
+  }
+
+  @media (max-width: 760px) {
+    .desktop-nav,
+    .nav > .cta {
+      display: none;
+    }
+    .mobile-menu-btn {
+      display: block;
+    }
+  }
+</style>

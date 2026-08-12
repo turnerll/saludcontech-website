@@ -1,0 +1,392 @@
+---
+import SignupForm from './SignupForm.astro';
+---
+
+<section class="hero" id="join-now">
+  <div class="container-narrow hero-inner">
+    <p class="hero-inscription">
+      The cross-industry Latino entrepreneurship community.
+      <span>Founders, funders, operators, builders. Health as the common thread.</span>
+    </p>
+
+    <span class="eyebrow-chip">
+      <span class="dot"></span>
+      Est. 2018 · Los Angeles · Nationwide
+    </span>
+
+    <div class="horizon-meter" id="horizonMeter" role="img" aria-label="The Latino share of the US population is projected to rise toward one in four by 2045.">
+      <div class="hm-block hm-year">
+        <div class="hm-label">The year</div>
+        <div class="hm-val" id="hmYear">2018</div>
+      </div>
+      <div class="hm-block hm-pct">
+        <div class="hm-label" id="hmPctLabel">Latino share of the US</div>
+        <div class="hm-val" id="hmPct">18%</div>
+      </div>
+      <div class="hm-status" id="hmStatus">From one in six today toward one in four by 2045.</div>
+      <div class="hm-bar"><div class="hm-parity" id="hmParity"></div><div class="hm-fill" id="hmFill"></div></div>
+    </div>
+
+    <h1 class="hero-h">
+      One community for the builders America needs.
+      <span>Founders, clinicians, funders, operators. Health is the door we all walk through.</span>
+    </h1>
+
+    <p class="hero-sub">
+      SaludConTech is where Latino entrepreneurs across industries find each other, share capital and customers, and build companies that serve the communities they come from.
+    </p>
+
+    <p class="lede">
+      We are 659 members strong, across 10 city chapters, with health as the thread that ties every industry together. If you are building something that matters, you belong here.
+    </p>
+
+    <SignupForm interest="homepage" buttonText="Join the community" />
+
+    <div class="projects">
+      <a class="proj-card" href="/about">
+        <div class="tag">Story</div>
+        <h3>Who we are</h3>
+        <p>A national community founded in 2018 to close the gap between Latino talent and ownership in health and technology.</p>
+        <span class="more">Read our story &rarr;</span>
+      </a>
+      <a class="proj-card" href="/community">
+        <div class="tag">Connect</div>
+        <h3>The membership</h3>
+        <p>City chapters, Slack, monthly calls, and founder dinners built for people who get it.</p>
+        <span class="more">See how to join &rarr;</span>
+      </a>
+      <a class="proj-card" href="/volunteer">
+        <div class="tag">Build</div>
+        <h3>Founding team</h3>
+        <p>90-day sprints for community managers, grant writers, developers, and event coordinators.</p>
+        <span class="more">Open roles &rarr;</span>
+      </a>
+      <a class="proj-card" href="/contact">
+        <div class="tag">Partner</div>
+        <h3>Work with us</h3>
+        <p>Sponsors, advisors, and collaborators who want to reach the most concentrated network of Latino health builders.</p>
+        <span class="more">Get in touch &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var fill = document.getElementById('hmFill');
+    var meter = document.getElementById('horizonMeter');
+    var yearEl = document.getElementById('hmYear');
+    var pctEl = document.getElementById('hmPct');
+    if (!fill || !meter) return;
+
+    var Y0 = 2018, Y1 = 2045, P0 = 18, P1 = 25;
+
+    function setVals(year, pct) {
+      if (yearEl) yearEl.textContent = Math.round(year);
+      if (pctEl) pctEl.textContent = pct.toFixed(0) + '%';
+    }
+
+    function finalState() {
+      fill.style.width = '100%';
+      setVals(Y1, P1);
+      meter.classList.add('complete');
+    }
+
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) { finalState(); return; }
+
+    function run() {
+      fill.style.width = '0%';
+      setVals(Y0, P0);
+      var dur = 1800, t0 = performance.now();
+      function step(now) {
+        var p = Math.min(1, (now - t0) / dur);
+        var eased = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+        fill.style.width = (eased * 100) + '%';
+        setVals(Y0 + (Y1 - Y0) * eased, P0 + (P1 - P0) * eased);
+        if (p >= 0.999) { finalState(); return; }
+        requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      setTimeout(finalState, dur + 500);
+    }
+
+    function fire() {
+      if (meter.dataset.fired) return;
+      meter.dataset.fired = '1';
+      run();
+    }
+
+    function inView(el) {
+      var r = el.getBoundingClientRect();
+      return r.top < (window.innerHeight || document.documentElement.clientHeight) && r.bottom > 0;
+    }
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { fire(); io.unobserve(meter); }
+        });
+      }, { threshold: 0.25 });
+      io.observe(meter);
+      if (inView(meter)) fire();
+      setTimeout(fire, 1200);
+    } else {
+      run();
+    }
+  })();
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 100px 0 80px;
+    background: linear-gradient(160deg, var(--moss-500) 0%, var(--ink-900) 65%, #0a1a13 100%);
+    color: var(--paper-50);
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(212, 162, 62, 0.18), transparent);
+    filter: blur(80px);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: -200px;
+    left: -180px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(181, 73, 28, 0.18), transparent);
+    filter: blur(80px);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    max-width: 1000px;
+  }
+
+  .hero-inscription {
+    display: block;
+    font: 400 italic 0.98rem/1.5 var(--font-display);
+    color: var(--paper-200);
+    max-width: 36em;
+    margin: 0 0 22px;
+    padding: 0 0 16px;
+    border-bottom: 1px solid rgba(244, 239, 227, 0.2);
+    text-wrap: pretty;
+  }
+
+  .hero-inscription span {
+    display: block;
+    margin-top: 6px;
+    font: 500 0.7rem/1 var(--font-ui);
+    font-style: normal;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--saffron-200);
+  }
+
+  .eyebrow-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    background: rgba(122, 38, 50, 0.2);
+    border: 1px solid rgba(122, 38, 50, 0.35);
+    border-radius: 999px;
+    font: 500 0.78rem/1 var(--font-ui);
+    letter-spacing: 0.04em;
+    color: var(--saffron-500);
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+
+  .eyebrow-chip .dot {
+    width: 8px;
+    height: 8px;
+    background: var(--saffron-500);
+    border-radius: 50%;
+  }
+
+  .horizon-meter {
+    display: grid;
+    grid-template-columns: 1.1fr 1.3fr;
+    gap: 20px 26px;
+    align-items: end;
+    margin: 6px 0 30px;
+    padding: 22px 24px;
+    background: rgba(12, 31, 22, 0.55);
+    border: 1px solid rgba(212, 162, 62, 0.3);
+    border-left: 4px solid var(--saffron-500);
+    border-radius: 4px;
+    max-width: 720px;
+    position: relative;
+  }
+
+  .hm-block .hm-label {
+    font: 600 0.7rem/1 var(--font-ui);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.65);
+    margin-bottom: 8px;
+  }
+
+  .hm-block .hm-val {
+    font: 700 clamp(2.2rem, 3vw + 1rem, 3.2rem)/1 var(--font-display);
+    color: var(--paper-50);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+
+  .hm-status {
+    grid-column: 1 / -1;
+    font: 400 0.98rem/1.5 var(--font-body);
+    color: rgba(244, 239, 227, 0.78);
+    text-wrap: pretty;
+  }
+
+  .hm-bar {
+    grid-column: 1 / -1;
+    position: relative;
+    height: 8px;
+    background: rgba(244, 239, 227, 0.12);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+
+  .hm-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--saffron-500), var(--clay-500));
+    border-radius: 999px;
+    transition: width 0.1s linear;
+  }
+
+  .hero-h {
+    font: 600 clamp(2.6rem, 6vw + 1rem, 5.5rem)/0.98 var(--font-display);
+    letter-spacing: -0.032em;
+    margin: 0 0 26px;
+    text-wrap: balance;
+    color: var(--paper-50);
+    max-width: 12ch;
+  }
+
+  .hero-h span {
+    display: block;
+    font-size: 0.5em;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--paper-200);
+    margin-top: 14px;
+    letter-spacing: -0.018em;
+    line-height: 1.2;
+  }
+
+  .hero-sub {
+    font: 500 clamp(1.05rem, 1.1vw + 0.4rem, 1.4rem)/1.4 var(--font-display);
+    color: var(--paper-200);
+    letter-spacing: -0.012em;
+    max-width: 42em;
+    margin: 6px 0 22px;
+    text-wrap: balance;
+  }
+
+  .hero .lede {
+    font: 400 1.24rem/1.6 var(--font-body);
+    color: var(--paper-200);
+    max-width: 42em;
+    margin: 0 0 40px;
+    text-wrap: pretty;
+  }
+
+  .hero .signup-form {
+    max-width: 720px;
+    padding: 22px;
+    border-radius: 14px;
+    background: rgba(212, 162, 62, 0.06);
+    border: 1px solid rgba(212, 162, 62, 0.45);
+    box-shadow: 0 0 20px 1px rgba(212, 162, 62, 0.12);
+    margin-bottom: 64px;
+  }
+
+  .projects {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  .proj-card {
+    padding: 28px 28px 24px;
+    background: rgba(244, 239, 227, 0.04);
+    border: 1px solid rgba(244, 239, 227, 0.15);
+    border-radius: var(--radius-lg);
+    transition: all 0.2s var(--ease-out);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .proj-card:hover {
+    background: rgba(212, 162, 62, 0.1);
+    border-color: var(--saffron-500);
+    transform: translateY(-3px);
+  }
+
+  .proj-card .tag {
+    font: 600 0.7rem/1 var(--font-ui);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--saffron-500);
+    margin-bottom: 14px;
+  }
+
+  .proj-card h3 {
+    font: 600 1.3rem/1.18 var(--font-display);
+    letter-spacing: -0.012em;
+    margin: 0 0 10px;
+    color: var(--paper-50);
+    text-wrap: balance;
+  }
+
+  .proj-card p {
+    font: 400 0.96rem/1.55 var(--font-body);
+    color: var(--paper-200);
+    margin: 0 0 14px;
+    flex: 1;
+  }
+
+  .proj-card .more {
+    font: 600 0.85rem/1 var(--font-ui);
+    color: var(--saffron-500);
+    margin-top: auto;
+  }
+
+  @media (max-width: 980px) {
+    .projects { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 72px 0 60px; }
+    .hero-h { max-width: none; }
+    .projects { grid-template-columns: 1fr; }
+    .horizon-meter { grid-template-columns: 1fr; gap: 14px; }
+  }
+</style>
