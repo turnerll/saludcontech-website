@@ -51,7 +51,7 @@ the cowork handoff, section 5 — verify it dead via `/user/tokens/verify`, then
 3. Newsletter send path: listmonk (:9015) auth broken (403). Daniel picks: fix listmonk vs Resend.
 4. 43 Dependabot advisories (18 high) on main: targeted npm overrides only, never audit-fix-force.
 5. Queued by parallel lane: Drive sweep for recent SCT docs into cowork; 777 Wayback photos
-   (docs/recovery/wayback/image_urls.txt); Events page with real photography.
+   (list in ~/Projects/saludcontech-site/docs/recovery/wayback/image_urls.txt — FROZEN folder, read-only); Events page with real photography.
 
 ## Rules
 
