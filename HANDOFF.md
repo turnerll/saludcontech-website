@@ -1,46 +1,64 @@
 # SaludConTech Website — Rolling Handoff
 
-## READ THIS FIRST — 2026-08-11
+## READ THIS FIRST — 2026-08-12 PM
 
-**The full lossless state is in `HANDOFF-2026-08-11.md`. Read that first.**
-**Strategy/research reference:** `docs/SCT-STRATEGY-CONTEXT.md`.
+**The 2026-08-12 session record (decisions, research, dead ends) is in the cowork folder:**
+`~/Documents/claude-cowork/01-Projects/saludcontech/HANDOFF-2026-08-12-membership-sponsors-analytics.md`
+(Mac: `/Users/mac_papi/Documents/claude-cowork/01-Projects/saludcontech/`). Read it before pricing,
+outreach, or Cloudflare-token work.
 
-**One-line next step:** add the Cloudflare DNS CNAME for `saludcontech.com` on the Mac Mini, verify the live domain serves the new build, test a signup + PostHog event, then capture the COMPA PostHog config from the Mac Mini browser and replicate it in the Ligazon/SCT PostHog project.
+**One-line next step:** delete the leaked Cloudflare API token (id `35511cd6f8974a30ef14bc9196e5d023`,
+dashboard row "Edit Cloudflare Workers", last used Aug 11) on the Mac Mini — exact next attempt is in
+the cowork handoff, section 5 — verify it dead via `/user/tokens/verify`, then shred
+`/tmp/cf-pages-token.txt`.
 
-## Current state (snapshot, updated 2026-08-11 PM)
+## Current state (snapshot, updated 2026-08-12 PM)
 
-- **Canonical folder:** `/home/djtl/Projects/saludcontech-website`
-- **Repo:** `https://github.com/turnerll/saludcontech-website` (public)
-- **Domain:** `saludcontech.com` — **LIVE with the new build.** DNS CNAME `@` → `saludcontech-relaunch.pages.dev` (proxied) added 2026-08-11; old apex A record (185.73.8.100) deleted. Old 2019 page only persists in expiring edge cache.
-- **Commit at time of writing:** `6491648` (run `git log --oneline -1` for absolute latest)
-- **Build:** `source ~/.nvm/nvm.sh && nvm use 22 && npm run build` → `dist/`
-- **CSP fix (ed0c0dd):** `public/_headers` now allows Supabase in connect-src plus umami/cloudflareinsights in script-src. Before this, signups were silently blocked by CSP.
-- **Signup verified end-to-end 2026-08-11:** real-Chrome submit → Supabase `public.signups` row (`source=saludcontech.com`) + PostHog `relaunch_signup` event with GeoIP (Los Angeles). 
-- **PostHog client:** wired via `/ingest` proxy in `functions/ingest/[[path]].js`, key in `src/layouts/Layout.astro`. Project `464719`.
-- **PostHog dashboard-side setup: DONE via API.** Session replay ON, autocapture ON (COMPA runs ON — the earlier guess was wrong), dashboard "SaludConTech" (id 1986725) with signup trend/funnel/top pages/referrers/devices, weekly email subscription to turnerlloveras@alumni.usc.edu. Signup alert NOT created (API rejected condition schemas; 30-second manual step, see docs/posthog-compa-config.md).
-- **COMPA PostHog capture:** `docs/posthog-compa-config.md` (config + replication record).
-- **Strategy doc:** `docs/SCT-STRATEGY-CONTEXT.md`
+- **Canonical folder:** `/home/djtl/Projects/saludcontech-website` → repo `turnerll/saludcontech-website`.
+- **Domain:** `saludcontech.com` live. **7 pages** including `/membership` (invite-only, no prices)
+  and `/sponsor` ($450K ladder: Platinum $100K x1, Gold $50K x2, Silver $25K x4, Bronze $10K x8).
+  Both verified 200 on the live domain 2026-08-12 PM.
+- **Latest commit:** `76f5a44` (run `git log --oneline -1` for absolute latest).
+- **Stats are fact-driven:** `LigazonDataViz.astro` pulls from `data/facts.json` via
+  `src/data/sctFacts.ts`. Known discrepancy: GDP card renders `approvedViz` 4.1 while facts.json
+  says 4. Flagged, not resolved.
+- **CI gate live:** `.github/workflows/ci.yml` + `scripts/verify-astro.cjs` — verified-facts check,
+  7-page presence, voice rules (no em dash, no "health equity"/DEI/Latinx). It caught 5 em dashes
+  in page titles on its first run; they are fixed (titles use `|`).
+- **Archetype sync automated:** `scripts/run_archetype_sync.sh` daily 06:00 via cron, logging to
+  `~/pai/logs/sct-archetype-sync.log`. Secrets mapped from `~/pai/secrets/ligazon_backend.env`
+  (no duplicated values). 57 visitor rows at last check. The parallel lane's weekly inline cron
+  was removed (superseded).
+- **Design base:** Ligazon design port (parallel lane, 2026-08-12 AM) is the live design.
+- **Signup:** name + email ONLY (Daniel's rule). The phone/SMS field was added (36c4f50) and
+  reverted (0cddcb0) per Daniel. Do not reinstate without his word.
+- **Parallel sessions commit to this repo/main.** `git fetch` + rebase before every push.
+
+## Decisions that supersede older docs
+
+- **saludcontech.org: dropped.** Unregistered, stays unregistered; .com only (Daniel). The
+  2026-08-11 handoff's "optional redirect" is superseded. Do not register it.
+- **Membership: invite-only, no Stripe, no published prices** (Daniel, 2026-08-12). Paid tiers
+  wait for density triggers; sponsors are the first revenue (competitor evidence in cowork handoff).
+- **Founding Circle pricing is WITH DANIEL:** $500 founding, cap 150, stepping to $1,500
+  (strategy/2026-08-12-SCT-GAME-PLAN.md in cowork). Do not publish prices anywhere.
 
 ## Immediate next steps
 
-1. ~~DNS CNAME~~ DONE. ~~Signup + PostHog test~~ DONE. ~~COMPA capture + replicate~~ DONE.
-2. Rotate the exposed Cloudflare API token (ID `35511cd6f8974a30ef14bc9196e5d023`) via Cloudflare dashboard — still pending, was held to avoid breaking a parallel session.
-3. Optional: create the signup alert in the PostHog UI (insight 10951978 → New alert).
-4. Replace hardcoded stats in `src/components/Stats.astro` with sourced facts from `data/facts.json`; add `scripts/verify-astro.cjs` + CI; membership/pricing pages (see HANDOFF-2026-08-11.md "NOT started").
+1. Delete the leaked token (see top of file). ~18 rounds of dashboard automation failed; the exact
+   next probe and the 30-second manual fallback are in the cowork handoff, section 5.
+2. Draft the Luma reactivation email for the 659-member list (draft only; Daniel approves).
+3. Newsletter send path: listmonk (:9015) auth broken (403). Daniel picks: fix listmonk vs Resend.
+4. 43 Dependabot advisories (18 high) on main: targeted npm overrides only, never audit-fix-force.
+5. Queued by parallel lane: Drive sweep for recent SCT docs into cowork; 777 Wayback photos
+   (docs/recovery/wayback/image_urls.txt); Events page with real photography.
 
 ## Rules
 
-- All SCT work stays in this folder. Do not write to `/home/djtl/Projects/ligazon` or `/home/djtl/Projects/saludcontech-site`.
+- All SCT work stays in this folder. `~/Projects/saludcontech-site` is a frozen backup (committed
+  marker file says so). The ligazon folder is the design donor, not the workspace.
 - Cloudflare Pages project name is `saludcontech-relaunch`, not `saludcontech-website`.
-- Start next session with fresh `opencode` (not `occ`) to load k3.
-- No real names in git.
-- See `CLAUDE.md` for permanent conventions and gotchas.
-
-## Update 2026-08-12 (from the ligazon orchestrator session)
-
-- **Signup form:** SignupForm.astro now captures name + email + phone + SMS consent; posts to Supabase public.signups (phone/sms_consent columns added 2026-08-12) and identifies the person in PostHog by name+email.
-- **Signup watcher:** ligazon repo scripts/signup_watch.py runs every 5 min via cron on Cortex: new signups → Listmonk "SaludConTech" list (id 3) + Twilio SMS confirmation when phone+consent present. Twilio = joincompa Full account, creds in ~/pai/secrets/ligazon_backend.env (TWILIO_*).
-- **Listmonk:** container ligazon-listmonk on Cortex (:9015). Admin UI password was reset in DB; use the API user in ~/pai/secrets/ligazon_newsletter.env (LISTMONK_API_USER/TOKEN). SMTP NOT configured yet — emails do not send until a real SMTP host is set (Gmail route blocked by passkey wall; SendGrid rejected per Daniel; Resend is the codebase's intended provider, no account yet).
-- **Visitor archetypes:** scripts/sync_posthog_archetypes.py (this repo) → public.visitor_archetypes in Supabase; runs weekly Mon 06:10 via cron. 43 archetypes at last run.
-- **Tracking verified:** signup → Supabase row (name/IP/UA) + PostHog relaunch_signup with GeoIP. Session replay ON in project 464719; dashboard "SaludConTech" (id 1986725); weekly email Monday to Daniel; daily signup alert ON.
-- **PENDING:** real-SMS end-to-end test (needs a phone number for the test text); Listmonk SMTP; welcome email delivery.
+- Build: `source ~/.nvm/nvm.sh && nvm use 22 && npm run build`. Gate: `node scripts/verify-astro.cjs`.
+- Secrets only in `~/pai/secrets/`; never commit service-role/sbp_/phx_ keys or Cloudflare tokens.
+- No real names in git. House voice: no em dashes; never "health equity"/DEI/Latinx.
+- Start sessions with fresh `opencode` in THIS folder so CLAUDE.md loads (not `occ`).
