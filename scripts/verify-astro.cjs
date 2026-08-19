@@ -45,7 +45,9 @@ if (factsData && Array.isArray(factsData.facts)) {
 const vizPath = path.join(root, 'src', 'components', 'LigazonDataViz.astro');
 if (fs.existsSync(vizPath)) {
   const vizSrc = fs.readFileSync(vizPath, 'utf8');
-  for (const needed of ['members.value', 'cityChapters.value']) {
+  // cityChapters.value removed 2026-08-18: the "10 city chapters" claim is unverified
+  // and the stat card was deleted from the component. Do not re-add without a source.
+  for (const needed of ['members.value']) {
     if (!vizSrc.includes(needed)) {
       failures.push('LigazonDataViz.astro: stat not fact-driven (missing ' + needed + ')');
     }
