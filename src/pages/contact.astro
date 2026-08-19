@@ -21,15 +21,9 @@ import LigazonFooter from '../components/LigazonFooter.astro';
             <form
               id="contact-form"
               class="contact-form"
-              action="https://formsubmit.co/djtl@saludcontech.com"
+              action="#"
               method="POST"
             >
-              <input type="hidden" name="_subject" value="New SaludConTech Contact Form Submission" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="https://saludcontech.com/contact?submitted=true" />
-              <input type="hidden" name="_template" value="table" />
-              <input type="text" name="_honey" style="display:none" />
-
               <div class="form-row">
                 <div class="field">
                   <label for="name">Name</label>
@@ -39,18 +33,6 @@ import LigazonFooter from '../components/LigazonFooter.astro';
                   <label for="email">Email</label>
                   <input type="email" id="email" name="email" required placeholder="your@email.com" />
                 </div>
-              </div>
-
-              <div class="field">
-                <label for="subject">I am interested in...</label>
-                <select id="subject" name="subject">
-                  <option value="Joining the Community">Joining the Community</option>
-                  <option value="Volunteering">Volunteering</option>
-                  <option value="Corporate Partnership">Corporate Partnership</option>
-                  <option value="Advisory Board">Advisory Board</option>
-                  <option value="Media / Press">Media / Press</option>
-                  <option value="Something Else">Something Else</option>
-                </select>
               </div>
 
               <div class="field">
@@ -67,15 +49,19 @@ import LigazonFooter from '../components/LigazonFooter.astro';
             </form>
 
             <div id="contact-success" class="contact-success hidden" hidden>
-              <p class="contact-success-title">Message sent!</p>
-              <p class="contact-success-body">We will get back to you within 48 hours.</p>
+              <p class="contact-success-title">Message received.</p>
+              <p class="contact-success-body">We read everything.</p>
             </div>
+
+            <p id="contact-error" class="contact-error hidden" hidden>
+              Something went wrong. Please email <a href="mailto:events@saludcontech.com">events@saludcontech.com</a>.
+            </p>
           </div>
 
           <aside class="contact-info">
             <div class="info-block">
               <h3>Email</h3>
-              <a href="mailto:djtl@saludcontech.com">djtl@saludcontech.com</a>
+              <a href="mailto:events@saludcontech.com">events@saludcontech.com</a>
             </div>
             <div class="info-block">
               <h3>Location</h3>
@@ -104,25 +90,57 @@ import LigazonFooter from '../components/LigazonFooter.astro';
 
   <script is:inline>
     (function () {
-      if (window.location.search.indexOf('submitted=true') !== -1) {
-        var form = document.getElementById('contact-form');
-        var success = document.getElementById('contact-success');
-        if (form) form.classList.add('hidden');
-        if (success) {
-          success.classList.remove('hidden');
-          success.hidden = false;
-        }
-      }
-
       var form = document.getElementById('contact-form');
-      if (form) {
-        form.addEventListener('submit', function () {
-          var email = document.getElementById('email')?.value;
-          if (email && window.posthog) {
-            posthog.identify(email, { email: email, source: 'saludcontech.com' });
-          }
-        });
-      }
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var name = form.name.value.trim();
+        var email = form.email.value.trim();
+        var message = form.message.value.trim();
+
+        var payload = {
+          name: name,
+          email: email,
+          message: message,
+          source: 'saludcontech.com',
+        };
+
+        fetch('https://jcxagmhvwakkxogfyrzv.supabase.co/rest/v1/contact_messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjeGFnbWh2d2Fra3hvZ2Z5cnp2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMTQ5MTAsImV4cCI6MjA5NjY5MDkxMH0.G_iv7_Z5_TSHN7HeXsTuExRjs3edyCfPJwCc3xwc2rM',
+            'Prefer': 'return=minimal',
+          },
+          body: JSON.stringify(payload),
+        })
+          .then(function (res) {
+            if (res.ok) {
+              if (window.posthog) {
+                posthog.identify(email, { email: email, name: name, source: 'saludcontech.com' });
+                posthog.capture('contact_message', { email: email, name: name });
+              }
+              form.classList.add('hidden');
+              var success = document.getElementById('contact-success');
+              if (success) {
+                success.hidden = false;
+                success.classList.remove('hidden');
+              }
+            } else {
+              throw new Error('Contact submission failed: ' + res.status);
+            }
+          })
+          .catch(function (err) {
+            console.error(err);
+            var error = document.getElementById('contact-error');
+            if (error) {
+              error.hidden = false;
+              error.classList.remove('hidden');
+            }
+          });
+      });
     })();
   </script>
 </Layout>
@@ -138,6 +156,10 @@ import LigazonFooter from '../components/LigazonFooter.astro';
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+
+  .contact-form.hidden {
+    display: none;
   }
 
   .form-row {
@@ -189,6 +211,16 @@ import LigazonFooter from '../components/LigazonFooter.astro';
   }
 
   .contact-success.hidden {
+    display: none;
+  }
+
+  .contact-error {
+    margin: 0;
+    font: 400 1rem/1.5 var(--font-body);
+    color: var(--ink-700);
+  }
+
+  .contact-error.hidden {
     display: none;
   }
 
