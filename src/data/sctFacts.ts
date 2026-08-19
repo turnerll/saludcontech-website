@@ -31,7 +31,7 @@ export function fact(id: string): Fact {
 // Approved hard-coded figures for visualizations. These are directionally accurate
 // public research figures the design brief explicitly approved for viz use.
 export const approvedViz = {
-  latinoGdpTrillions: 4.1,
+  latinoGdpTrillions: 4.0,
   latinoPopulation2045Pct: 25,
   latinoFounderVcSharePct: 2,
   latinoVcProfessionalsPct: 2,
