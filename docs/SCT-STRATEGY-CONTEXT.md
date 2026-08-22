@@ -1,6 +1,6 @@
 # SaludConTech Strategy & Research Context
 
-> Distilled from the 2026-08-03 handoff. This is reference material for content, pricing, and outreach decisions. The current action state is in `HANDOFF-2026-08-11.md`.
+> Distilled from the 2026-08-03 handoff. This is reference material for content, pricing, and outreach decisions. The current action state is in `handoffs/2026-08-11-HANDOFF-site-launch-posthog-dns.md`.
 
 ## Who SaludConTech is
 

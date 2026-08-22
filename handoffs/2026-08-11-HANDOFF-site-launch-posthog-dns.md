@@ -144,7 +144,7 @@ Then have Daniel log into the **Ligazon/SCT** PostHog account (project `464719`)
 | `data/facts.json` | New SCT facts |
 | `HANDOFF.md` | Redacted exposed token; added continuity note |
 | `CLAUDE.md` | Added standing rules/gotchas |
-| `HANDOFF-2026-08-11.md` | This file |
+| `2026-08-11-HANDOFF-site-launch-posthog-dns.md` | This file |
 
 ## Backups
 
