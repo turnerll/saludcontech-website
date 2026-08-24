@@ -39,6 +39,9 @@ export const approvedViz = {
 
 export const SCT_FACTS = {
   founded: fact('sct.founded_year'),
+  symposium: fact('sct.symposium_year'),
+  sdhes: fact('sct.sdhes_year'),
+  eveningGatherings: fact('sct.evening_gatherings_year'),
   members: fact('sct.total_members'),
   slackMembers: fact('sct.slack_members'),
   slackMessages: fact('sct.slack_messages'),

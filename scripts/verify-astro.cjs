@@ -73,6 +73,7 @@ const expectedPages = [
   'contact/index.html',
   'membership/index.html',
   'sponsor/index.html',
+  'photos/index.html',
 ];
 const distDir = path.join(root, 'dist');
 if (!fs.existsSync(distDir)) {

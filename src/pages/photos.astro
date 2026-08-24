@@ -1,0 +1,161 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LigazonHeader from '../components/LigazonHeader.astro';
+import PageHeader from '../components/PageHeader.astro';
+import LigazonFooter from '../components/LigazonFooter.astro';
+import { SCT_FACTS } from '../data/sctFacts';
+
+const photos = [
+  { src: '/photos/symposium-stage-talk.jpg', alt: 'Speaker presenting onstage at the SaludConTech symposium' },
+  { src: '/photos/symposium-panel.jpg', alt: 'Panel discussion onstage at the SaludConTech symposium' },
+  { src: '/photos/symposium-audience-speaker.jpg', alt: 'Speaker addressing the SaludConTech symposium audience' },
+  { src: '/photos/symposium-room.jpg', alt: 'Wide view of the SaludConTech symposium room' },
+  { src: '/photos/symposium-community.jpg', alt: 'Community members gathered at the SaludConTech symposium' },
+  { src: '/photos/symposium-audience-one.jpg', alt: 'Audience members listening during the SaludConTech symposium' },
+  { src: '/photos/symposium-audience-two.jpg', alt: 'Wide audience view during the SaludConTech symposium' },
+  { src: '/photos/symposium-stage-group.jpg', alt: 'Group gathered onstage at the SaludConTech symposium' },
+  { src: '/photos/symposium-room-conversation.jpg', alt: 'Attendees in conversation inside the symposium room' },
+  { src: '/photos/symposium-panel-close.jpg', alt: 'Panelists in conversation at the SaludConTech symposium' },
+  { src: '/photos/symposium-stage-wide.jpg', alt: 'Wide stage view at the SaludConTech symposium' },
+];
+---
+
+<Layout title="Photos | SaludConTech" description="Recovered photography from the rooms SaludConTech has convened since its founding.">
+  <LigazonHeader />
+  <main>
+    <PageHeader
+      eyebrow="The archive"
+      title="Seven years of rooms"
+      subtitle={`Founded in ${SCT_FACTS.founded.value}, SaludConTech began by bringing founders, funders, clinicians, and operators into the same room.`}
+    />
+
+    <section class="section-block intro-section">
+      <div class="reading-col archive-intro">
+        <p>
+          The ${SCT_FACTS.symposium.value} symposium opened the door. SDHES returned in January ${SCT_FACTS.sdhes.value}.
+          Evening gatherings followed in ${SCT_FACTS.eveningGatherings.value}. Today, the next chapter is under way.
+        </p>
+      </div>
+    </section>
+
+    <section class="gallery-section" aria-label="SaludConTech photo archive">
+      <div class="container-narrow photo-grid">
+        {photos.map((photo, index) => (
+          <figure class:list={['photo-card', index === 0 && 'photo-card-wide']}>
+            <img src={photo.src} alt={photo.alt} loading={index < 3 ? 'eager' : 'lazy'} decoding="async" />
+            <figcaption>Symposium {SCT_FACTS.symposium.value}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-block closing-section">
+      <div class="reading-col closing-copy">
+        <span class="label">The room returns</span>
+        <h2 class="headline">The archive is proof. The next room is the work.</h2>
+        <p>Join the founders, funders, and operators building what comes next.</p>
+        <a href="/membership" class="btn btn-primary">Explore membership</a>
+      </div>
+    </section>
+  </main>
+  <LigazonFooter />
+</Layout>
+
+<style>
+  .intro-section {
+    padding-bottom: 56px;
+  }
+
+  .archive-intro {
+    font: var(--body-lg);
+    color: var(--ink-700);
+    text-wrap: pretty;
+  }
+
+  .gallery-section {
+    padding: 0 0 104px;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .photo-card {
+    grid-column: span 4;
+    margin: 0;
+    overflow: hidden;
+    background: var(--ink-950);
+    border-radius: var(--radius-lg);
+    position: relative;
+    min-height: 330px;
+  }
+
+  .photo-card-wide {
+    grid-column: span 8;
+  }
+
+  .photo-card img {
+    width: 100%;
+    height: 100%;
+    min-height: 330px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s var(--ease-out);
+  }
+
+  .photo-card:hover img {
+    transform: scale(1.025);
+  }
+
+  .photo-card figcaption {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    padding: 8px 11px;
+    border-radius: var(--radius);
+    background: rgba(11, 15, 26, 0.82);
+    color: var(--paper-50);
+    font: 600 0.72rem/1 var(--font-ui);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .closing-section {
+    background: var(--paper-100);
+  }
+
+  .closing-copy {
+    text-align: center;
+  }
+
+  .closing-copy p {
+    margin: 18px 0 28px;
+    font: var(--body-lg);
+    color: var(--ink-700);
+  }
+
+  @media (max-width: 900px) {
+    .photo-card,
+    .photo-card-wide {
+      grid-column: span 6;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .photo-grid {
+      gap: 12px;
+    }
+
+    .photo-card,
+    .photo-card-wide {
+      grid-column: 1 / -1;
+      min-height: 280px;
+    }
+
+    .photo-card img {
+      min-height: 280px;
+    }
+  }
+</style>
