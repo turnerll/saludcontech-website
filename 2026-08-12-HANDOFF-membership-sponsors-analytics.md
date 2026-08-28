@@ -62,3 +62,12 @@ the cowork handoff, section 5 — verify it dead via `/user/tokens/verify`, then
 - Secrets only in `~/pai/secrets/`; never commit service-role/sbp_/phx_ keys or Cloudflare tokens.
 - No real names in git. House voice: no em dashes; never "health equity"/DEI/Latinx.
 - Start sessions with fresh `opencode` in THIS folder so CLAUDE.md loads (not `occ`).
+
+## 2026-08-28 Stage A finish-line addendum
+
+- **Status:** ACTIVE.
+- **Finish line:** PROPOSED: secure and stabilize the live SaludConTech site, prove its factual and build gates, and make the sponsor-first reactivation path ready for Daniel's draft and send taps.
+- **Remaining:** 1. Revoke and verify the leaked Cloudflare token is dead. 2. Resolve the newsletter path and prepare the 659-member reactivation draft. 3. Remediate the targeted dependency advisories. 4. Complete the source sweep, photo recovery, Events page, and production verification gates.
+- **Proposed disposition:** finish.
+- **Stage A process check:** `ls -l /proc/[0-9]*/cwd 2>/dev/null | grep saludcontech-website` returned no match at 2026-08-28T10:04:39-07:00.
+- **Boundary:** proposal only. No credential, outreach, dependency, deployment, or website change was made.
