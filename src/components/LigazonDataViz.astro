@@ -9,6 +9,8 @@ const bars = [
   { label: 'Latino founders share of VC funding', value: approved.latinoFounderVcSharePct, role: 'clay', note: 'Industry estimate' },
   { label: 'Latino professionals in VC', value: approved.latinoVcProfessionalsPct, role: 'maroon', note: 'Industry estimate' },
 ];
+
+const fmtStat = (n: number, dec = 0, prefix = '', suffix = '') => prefix + (dec > 0 ? n.toFixed(dec) : Math.round(n).toString()) + suffix;
 ---
 
 <section class="section-block alt" id="data">
@@ -44,15 +46,15 @@ const bars = [
 
       <div class="stat-cards">
         <div class="stat-card">
-          <span class="stat-num anim-num" data-target={members.value} data-suffix="+">0</span>
+          <span class="stat-num anim-num" data-target={members.value} data-suffix="+">{fmtStat(members.value, 0, '', '+')}</span>
           <span class="stat-lbl">Community members</span>
         </div>
         <div class="stat-card">
-          <span class="stat-num anim-num" data-target={approved.latinoGdpTrillions} data-decimals="1" data-prefix="$" data-suffix="T">$0T</span>
+          <span class="stat-num anim-num" data-target={approved.latinoGdpTrillions} data-decimals="1" data-prefix="$" data-suffix="T">{fmtStat(approved.latinoGdpTrillions, 1, '$', 'T')}</span>
           <span class="stat-lbl">Latino US GDP</span>
         </div>
         <div class="stat-card">
-          <span class="stat-num anim-num" data-target={latinoBusinessRevenue.value} data-prefix="$" data-suffix="B">$0B</span>
+          <span class="stat-num anim-num" data-target={latinoBusinessRevenue.value} data-prefix="$" data-suffix="B">{fmtStat(latinoBusinessRevenue.value, 0, '$', 'B')}</span>
           <span class="stat-lbl">Latino-owned business revenue</span>
         </div>
       </div>
