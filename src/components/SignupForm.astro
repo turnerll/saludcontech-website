@@ -25,6 +25,12 @@ const { interest = 'newsletter', buttonText = 'Subscribe' } = Astro.props;
       class="signup-input"
       aria-label="Email"
     />
+    <select name="role" class="signup-input" aria-label="Which one are you?">
+      <option value="">Which one are you? (optional)</option>
+      <option value="problem">I run a clinic, health center, plan or system</option>
+      <option value="expertise">I deliver care or live it</option>
+      <option value="build-fund">I build or fund health companies</option>
+    </select>
     <button type="submit" class="btn btn-primary btn-glow signup-submit">
       {buttonText}
     </button>
@@ -46,7 +52,8 @@ const { interest = 'newsletter', buttonText = 'Subscribe' } = Astro.props;
       e.preventDefault();
       var email = form.email.value.trim();
       var name = form.name.value.trim();
-      var interest = form.dataset.interest || 'newsletter';
+      var role = form.role ? form.role.value : '';
+      var interest = (form.dataset.interest || 'newsletter') + (role ? ':' + role : '');
 
       var payload = {
         email: email,
