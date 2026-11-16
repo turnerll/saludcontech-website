@@ -1,0 +1,137 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LigazonHeader from '../components/LigazonHeader.astro';
+import PageHeader from '../components/PageHeader.astro';
+import VolunteerRoles from '../components/VolunteerRoles.astro';
+import LigazonCTA from '../components/LigazonCTA.astro';
+import LigazonFooter from '../components/LigazonFooter.astro';
+---
+
+<Layout title="Volunteer | SaludConTech" description="Join the founding team. 90-day sprints, founding recognition, direct mentorship, and access to the HLTH and USC Keck networks.">
+  <LigazonHeader />
+  <main>
+    <PageHeader
+      eyebrow="Founding team"
+      title="Help build something that actually matters."
+      subtitle="We are assembling the founding team for the most important community in Latino health entrepreneurship. Every role is a 90-day sprint with clear deliverables."
+    />
+
+    <section class="section-block">
+      <div class="container-narrow">
+        <div class="section-head center">
+          <span class="label">What you get</span>
+          <h2 class="headline">Every role is a sprint, not a side quest</h2>
+        </div>
+        <div class="benefits-grid">
+          <div class="benefit">
+            <h3>Founding recognition</h3>
+            <p>Your name in all materials as a founding team member.</p>
+          </div>
+          <div class="benefit">
+            <h3>Direct mentorship</h3>
+            <p>From a physician-entrepreneur with 15 years of community health experience.</p>
+          </div>
+          <div class="benefit">
+            <h3>Network access</h3>
+            <p>HLTH Foundation, ViVE, UCLA, USC Keck healthcare ecosystem.</p>
+          </div>
+          <div class="benefit">
+            <h3>Portfolio piece</h3>
+            <p>Building a community from scratch that serves one in four Americans by 2045.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <VolunteerRoles />
+
+    <section class="section-block alt">
+      <div class="container-narrow">
+        <div class="section-head center">
+          <span class="label">The 90-day sprint</span>
+          <h2 class="headline">Three phases. Specific deliverables. No ambiguity.</h2>
+        </div>
+        <div class="sprint-grid">
+          <div class="sprint-card">
+            <span class="sprint-phase">Days 1-30</span>
+            <h3>Foundation</h3>
+            <p>Website live, first volunteers onboarded, advisory board invitations sent.</p>
+          </div>
+          <div class="sprint-card">
+            <span class="sprint-phase">Days 31-60</span>
+            <h3>Activation</h3>
+            <p>First events, content calendar running, grant applications submitted.</p>
+          </div>
+          <div class="sprint-card">
+            <span class="sprint-phase">Days 61-90</span>
+            <h3>Scale</h3>
+            <p>Corporate sponsor outreach, accelerator planning, full community ops.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <LigazonCTA />
+  </main>
+  <LigazonFooter />
+</Layout>
+
+<style>
+  .benefits-grid,
+  .sprint-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 48px;
+  }
+
+  .benefit,
+  .sprint-card {
+    padding: 28px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+    text-align: center;
+  }
+
+  .benefit h3,
+  .sprint-card h3 {
+    font: 600 1.15rem/1.2 var(--font-display);
+    color: var(--ink-900);
+    margin: 0 0 10px;
+  }
+
+  .benefit p,
+  .sprint-card p {
+    font: 400 0.96rem/1.55 var(--font-body);
+    color: var(--ink-700);
+    margin: 0;
+  }
+
+  .sprint-phase {
+    display: block;
+    font: 600 0.75rem/1 var(--font-ui);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--maroon-500);
+    margin-bottom: 12px;
+  }
+
+  .sprint-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 900px;
+    margin: 48px auto 0;
+  }
+
+  @media (max-width: 980px) {
+    .benefits-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 760px) {
+    .sprint-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .benefits-grid { grid-template-columns: 1fr; }
+  }
+</style>

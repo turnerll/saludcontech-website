@@ -1,11 +1,7 @@
 ---
 const navLinks = [
   { label: 'About', href: '/about' },
-  { label: 'Membership', href: '/membership' },
-  { label: 'Sponsor', href: '/sponsor' },
-  { label: 'Community', href: '/community' },
   { label: 'Photos', href: '/photos' },
-  { label: 'Volunteer', href: '/volunteer' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -30,7 +26,7 @@ const currentPath = Astro.url.pathname;
       ))}
     </nav>
 
-    <a class="cta" href="/community">Join us</a>
+    <a class="cta" href="/#join-now">Sign up</a>
 
     <button
       id="mobile-menu-btn"
@@ -61,7 +57,7 @@ const currentPath = Astro.url.pathname;
           {link.label}
         </a>
       ))}
-      <a href="/community" class="btn btn-primary mobile-cta">Join us</a>
+      <a href="/#join-now" class="btn btn-primary mobile-cta">Sign up</a>
     </nav>
   </div>
 </div>

@@ -1,0 +1,228 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = 'SaludConTech is the cross-industry Latino entrepreneurship community. Founders, funders, operators, and builders with health as the common thread.',
+  ogImage = '/images/og-image.png',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:site_name" content="SaludConTech" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Umami Analytics -->
+    <script
+      defer
+      src="https://analytics.saludcontech.com/script.js"
+      data-website-id="b97e6d2a-b31c-4ccb-bd6a-0f38e6afdc43"
+    ></script>
+
+    <!-- GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KXZSTS8BL"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-9KXZSTS8BL');
+    </script>
+
+    <!-- PostHog (first-party via /ingest proxy) -->
+    <script is:inline>
+      !(function (t, e) {
+        var o, n, p, r;
+        e.__SV ||
+          ((window.posthog = e),
+          (e._i = []),
+          (e.init = function (i, s, a) {
+            function g(t, e) {
+              var o = e.split('.');
+              2 == o.length && ((t = t[o[0]]), (e = o[1])),
+                (t[e] = function () {
+                  t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+                });
+            }
+            ((p = t.createElement('script')).type = 'text/javascript'),
+              (p.async = !0),
+              (p.src = s.api_host + '/static/array.js'),
+              (r = t.getElementsByTagName('script')[0]).parentNode.insertBefore(p, r);
+            var u = e;
+            for (
+              void 0 !== a ? (u = e[a] = []) : (a = 'posthog'),
+                u.people = u.people || [],
+                u.toString = function (t) {
+                  var e = 'posthog';
+                  return 'posthog' !== a && (e += '.' + a), t || (e += ' (stub)'), e;
+                },
+                u.people.toString = function () {
+                  return u.toString(1) + '.people (stub)';
+                },
+                o = 'capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing opt_in_capturing has_opted_in_capturing has_opted_out_capturing opt_out_capturing_opt_in disable_cookie reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getActiveMatchingSurveys getSurveys getNextSurveyStep'.split(
+                  ' '
+                ),
+                n = 0;
+              n < o.length;
+              n++
+            )
+              g(u, o[n]);
+            e._i.push([i, s, a]);
+          }),
+          (e.__SV = 1));
+      })(document, window.posthog || []);
+      posthog.init('phc_kXyeJqG2JKPbu3Svo2E7KkYsjZn6yFHjqxLPqBBbJ3Us', {
+        api_host: '/ingest',
+        ui_host: 'https://us.posthog.com',
+        session_recording: { enabled: true },
+        opt_out_capturing_by_default: true,
+        respect_dnt: true,
+        persistence: 'localStorage+cookie',
+        loaded: function (posthog) {
+          posthog.register({
+            environment: 'production',
+            app_version: '2026.08.11',
+            site: 'saludcontech',
+          });
+          const params = new URLSearchParams(window.location.search);
+          ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach((k) => {
+            if (params.has(k)) posthog.register({ [k]: params.get(k) });
+          });
+        },
+      });
+    </script>
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+
+    <!-- Intersection Observer for scroll animations -->
+    <script is:inline>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      );
+
+      document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right').forEach((el) => {
+        observer.observe(el);
+      });
+    </script>
+
+    <!-- Consent banner: CIPA-safe analytics + session replay opt-in -->
+    <div
+      id="consent-banner"
+      class="consent-banner fixed bottom-0 left-0 right-0 z-50 shadow-[0_-4px_24px_rgba(0,0,0,0.4)]"
+      role="dialog"
+      aria-live="polite"
+      aria-label="Privacy consent"
+      hidden
+    >
+      <div class="container-narrow py-4 sm:py-5">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <p class="text-sm leading-relaxed max-w-xl" style="color: var(--paper-200);">
+            We use analytics and session replay to improve this site.
+          </p>
+          <div class="flex flex-wrap items-center gap-3">
+            <button id="consent-accept" type="button" class="btn btn-primary !px-5 !py-2 text-sm">Accept all</button>
+            <button id="consent-decline" type="button" class="btn btn-secondary !px-5 !py-2 text-sm" style="border-color: rgba(244,239,227,0.4); color: var(--paper-50);">Decline all</button>
+            <button id="consent-dns" type="button" class="text-xs underline underline-offset-2 bg-transparent border-0 p-0 cursor-pointer" style="color: rgba(244,239,227,0.55);">
+              Do not sell or share my personal info
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script is:inline>
+      (function () {
+        var STORAGE_KEY = 'sct_consent';
+        var banner = document.getElementById('consent-banner');
+        var acceptBtn = document.getElementById('consent-accept');
+        var declineBtn = document.getElementById('consent-decline');
+        var dnsBtn = document.getElementById('consent-dns');
+
+        function setConsent(choice) {
+          try {
+            localStorage.setItem(STORAGE_KEY, choice);
+          } catch (e) {}
+          if (choice === 'accepted') {
+            if (window.posthog && posthog.opt_in_capturing) posthog.opt_in_capturing();
+          } else {
+            if (window.posthog && posthog.opt_out_capturing) posthog.opt_out_capturing();
+          }
+          if (banner) banner.hidden = true;
+        }
+
+        function applyStoredConsent() {
+          var choice = '';
+          try {
+            choice = localStorage.getItem(STORAGE_KEY) || '';
+          } catch (e) {}
+          if (choice === 'accepted') {
+            if (window.posthog && posthog.opt_in_capturing) posthog.opt_in_capturing();
+            if (banner) banner.hidden = true;
+          } else if (choice === 'declined') {
+            if (window.posthog && posthog.opt_out_capturing) posthog.opt_out_capturing();
+            if (banner) banner.hidden = true;
+          } else {
+            if (banner) banner.hidden = false;
+          }
+        }
+
+        if (acceptBtn) acceptBtn.addEventListener('click', function () { setConsent('accepted'); });
+        if (declineBtn) declineBtn.addEventListener('click', function () { setConsent('declined'); });
+        if (dnsBtn) dnsBtn.addEventListener('click', function () { setConsent('declined'); });
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', applyStoredConsent);
+        } else {
+          applyStoredConsent();
+        }
+      })();
+    </script>
+  </body>
+</html>

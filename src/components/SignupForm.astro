@@ -7,7 +7,7 @@ interface Props {
 const { interest = 'newsletter', buttonText = 'Subscribe' } = Astro.props;
 ---
 
-<form id="signup-form" class="signup-form" action="#" method="POST" data-interest={interest}>
+<form class="signup-form" action="#" method="POST" data-interest={interest}>
   <div class="signup-row">
     <input
       type="text"
@@ -29,19 +29,19 @@ const { interest = 'newsletter', buttonText = 'Subscribe' } = Astro.props;
       {buttonText}
     </button>
   </div>
-  <p class="signup-foot">No spam. Unsubscribe anytime.</p>
+  <p class="signup-foot">No spam.</p>
 
-  <div id="signup-success" class="signup-success hidden" hidden>
-    <p class="signup-success-title">You are in.</p>
-    <p class="signup-success-body">Check your inbox for a confirmation.</p>
+  <div class="signup-success hidden" hidden>
+    <p class="signup-success-title">Thank you.</p>
+    <p class="signup-success-body">You are on the list.</p>
   </div>
 </form>
 
 <script is:inline>
   (function () {
-    var form = document.getElementById('signup-form');
-    if (!form) return;
-
+    var forms = document.querySelectorAll('form.signup-form:not([data-bound])');
+    forms.forEach(function (form) {
+    form.setAttribute('data-bound', '1');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var email = form.email.value.trim();
@@ -72,7 +72,7 @@ const { interest = 'newsletter', buttonText = 'Subscribe' } = Astro.props;
             }
             form.querySelector('.signup-row').classList.add('hidden');
             form.querySelector('.signup-foot').classList.add('hidden');
-            var success = document.getElementById('signup-success');
+            var success = form.querySelector('.signup-success');
             if (success) {
               success.hidden = false;
               success.classList.remove('hidden');
@@ -85,6 +85,7 @@ const { interest = 'newsletter', buttonText = 'Subscribe' } = Astro.props;
           console.error(err);
           alert('Something went wrong. Please try again.');
         });
+    });
     });
   })();
 </script>

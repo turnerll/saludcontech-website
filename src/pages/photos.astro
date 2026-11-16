@@ -32,20 +32,19 @@ const photos = [
 ];
 ---
 
-<Layout title="Photos | SaludConTech" description="Recovered photography from the rooms SaludConTech has convened since its founding.">
+<Layout title="Photos | SaludConTech" description="Photos from past SaludConTech gatherings.">
   <LigazonHeader />
   <main>
     <PageHeader
       eyebrow="The archive"
-      title="Seven years of rooms"
+      title="From the archive"
       subtitle={`Founded in ${SCT_FACTS.founded.value}, SaludConTech began by bringing founders, funders, clinicians, and operators into the same room.`}
     />
 
     <section class="section-block intro-section">
       <div class="reading-col archive-intro">
         <p>
-          The ${SCT_FACTS.symposium.value} symposium opened the door. SDHES returned in January ${SCT_FACTS.sdhes.value}.
-          Evening gatherings followed in ${SCT_FACTS.eveningGatherings.value}. Today, the next chapter is under way.
+          Photos from past SaludConTech gatherings, recovered from our archive.
         </p>
       </div>
     </section>
@@ -55,7 +54,7 @@ const photos = [
         {photos.map((photo, index) => (
           <figure class:list={['photo-card', index === 0 && 'photo-card-wide']}>
             <img src={photo.src} alt={photo.alt} loading={index < 3 ? 'eager' : 'lazy'} decoding="async" />
-            <figcaption>Symposium {SCT_FACTS.symposium.value}</figcaption>
+            <figcaption>SaludConTech gathering</figcaption>
           </figure>
         ))}
       </div>
@@ -63,10 +62,9 @@ const photos = [
 
     <section class="section-block closing-section">
       <div class="reading-col closing-copy">
-        <span class="label">The room returns</span>
-        <h2 class="headline">The archive is proof. The next room is the work.</h2>
-        <p>Join the founders, funders, and operators building what comes next.</p>
-        <a href="/membership" class="btn btn-primary">Explore membership</a>
+        <h2 class="headline">Hear what comes next.</h2>
+        <p>Leave your name and email to hear first.</p>
+        <a href="/#join-now" class="btn btn-primary">Sign up for updates</a>
       </div>
     </section>
   </main>

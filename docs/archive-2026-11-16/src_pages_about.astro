@@ -1,0 +1,152 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LigazonHeader from '../components/LigazonHeader.astro';
+import PageHeader from '../components/PageHeader.astro';
+import LigazonCTA from '../components/LigazonCTA.astro';
+import LigazonFooter from '../components/LigazonFooter.astro';
+---
+
+<Layout title="About | SaludConTech" description="Founded in 2018. The cross-industry Latino entrepreneurship community where health is the common thread. 336 active members.">
+  <LigazonHeader />
+  <main>
+    <PageHeader
+      eyebrow="Our story"
+      title="The people closest to the problems should own the solutions."
+      subtitle="SaludConTech is where Latino founders, clinicians, funders, and operators build companies that serve the communities they come from."
+    />
+
+    <section class="section-block">
+      <div class="reading-col">
+        <p class="body-text" style="font-size: 1.18rem; margin-bottom: 24px;">
+          Founded in 2018, SaludConTech grew from a simple belief: the people closest to a community's health challenges should be the ones building the companies that solve them.
+        </p>
+        <p class="body-text" style="margin-bottom: 24px;">
+          We are not a health tech organization. We are a cross-industry entrepreneurship community where health is the common thread. Our members come from medicine, engineering, venture capital, public health, policy, and operations. What ties them together is a shared conviction that ownership and leadership should reflect the communities being served.
+        </p>
+        <p class="body-text" style="margin-bottom: 24px;">
+          Today the community is 336 active members connected through a vetted Slack workspace where members share customers, co-founders, and capital. SaludConTech was founded in 2018 and is relaunching now, with the convening calendar being rebuilt from the ground up around monthly confidential forums.
+        </p>
+        <p class="body-text">
+          SaludConTech is part of the Cultura Holdings ecosystem.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-block alt">
+      <div class="container-narrow">
+        <div class="section-head center">
+          <span class="label">Who builds this</span>
+          <h2 class="headline">A founding circle, not a one-person operation</h2>
+        </div>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-avatar">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Daniel Turner-Lloveras, MD</h3>
+            <p class="team-role">Founder</p>
+            <p class="team-bio">Physician and founder. Adjunct Professor of Medicine at the Keck School of Medicine of USC. Principal Investigator at the Public Health Institute since 2021.</p>
+          </div>
+          <div class="team-card team-card--open">
+            <div class="team-avatar">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Community Director</h3>
+            <p class="team-role">Now recruiting</p>
+            <p class="team-bio">15-20 hours per week. Volunteer to paid upon first $100K in grants.</p>
+            <a href="/volunteer" class="team-link">Learn more &rarr;</a>
+          </div>
+          <div class="team-card team-card--open">
+            <div class="team-avatar">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Programs Director</h3>
+            <p class="team-role">Phase 2 hire</p>
+            <p class="team-bio">10-15 hours per week. Will lead founder fellowships and accelerator programs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <LigazonCTA />
+  </main>
+  <LigazonFooter />
+</Layout>
+
+<style>
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 48px;
+  }
+
+  .team-card {
+    padding: 32px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: all 0.2s var(--ease-out);
+  }
+
+  .team-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--clay-500);
+  }
+
+  .team-card--open {
+    border-style: dashed;
+    border-color: var(--rule-strong);
+  }
+
+  .team-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--paper-100);
+    color: var(--clay-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+  }
+
+  .team-card h3 {
+    font: 600 1.25rem/1.2 var(--font-display);
+    color: var(--ink-900);
+    margin: 0 0 6px;
+  }
+
+  .team-role {
+    font: 600 0.78rem/1 var(--font-ui);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--maroon-500);
+    margin: 0 0 14px;
+  }
+
+  .team-bio {
+    font: 400 0.95rem/1.55 var(--font-body);
+    color: var(--ink-700);
+    margin: 0;
+  }
+
+  .team-link {
+    display: inline-block;
+    margin-top: 14px;
+    font: 600 0.9rem/1 var(--font-ui);
+    color: var(--maroon-500);
+    text-decoration: none;
+  }
+
+  @media (max-width: 980px) {
+    .team-grid { grid-template-columns: 1fr; }
+  }
+</style>
